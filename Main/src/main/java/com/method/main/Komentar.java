@@ -1,5 +1,4 @@
 package com.method.main;
-//vtfjkllhgfdxfgchvjbknlhghfdg
 
 public class Komentar {
     private String pengguna;
