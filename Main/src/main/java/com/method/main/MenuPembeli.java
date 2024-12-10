@@ -1,130 +1,106 @@
 package com.method.main;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuPembeli implements Menu {
-    final private Pembeli pembeli;
-    private Scanner scanner;
-    private ArrayList<RewardUlasan> daftarReward;
+    private final Pembeli pembeli;
 
     public MenuPembeli(Pembeli pembeli) {
         this.pembeli = pembeli;
-        this.scanner = new Scanner(System.in);
-        this.daftarReward = new ArrayList<>();
     }
 
     @Override
     public void tampilkanMenu() {
-        System.out.println("=== Menu Pembeli ===");
+        System.out.println("=============== Menu Pembeli ===============");
         System.out.println("1. Lihat Produk");
-        System.out.println("2. Lihat Rating Produk");
-        System.out.println("3. Beli Produk");
-        System.out.println("4. Berikan Rating");
-        System.out.println("5. Tampilkan Reward");
-        System.out.println("6. Profil");
-        System.out.println("7. Keluar");
+        System.out.println("2. Beli Produk");
+        System.out.println("3. Berikan Rating");
+        System.out.println("4. Tampilkan Reward");
+        System.out.println("5. Profil");
+        System.out.println("6. Keluar");
     }
 
     @Override
-public void aksi() {
-    int pilihan;
+    public void aksi() {
+        int pilihan;
+        Scanner scanner = new Scanner(System.in);
 
-    while (true) {
-        tampilkanMenu();
-        System.out.print("Pilih aksi: ");
-        pilihan = scanner.nextInt();
-        scanner.nextLine(); // Clear buffer
+        while (true) {
+            tampilkanMenu();
+            System.out.print("Pilih menu : ");
+            pilihan = scanner.nextInt();
+            scanner.nextLine(); // Clear buffer
 
-        switch (pilihan) {
-            case 1:
-                Produk.tampilkanSemuaProduk();
-                break;
-            case 2:
-                lihatRatingProduk();
-                break;
-           // case 3:
-              //  beliProduk();
-               // break;
-            case 4:
-                System.out.print("Masukkan nama produk untuk memberikan rating: ");
-                String namaProduk = scanner.nextLine();
-                //berikanRating(namaProduk);
-                break;
-            case 5:
-                tampilkanReward();
-                break;
-            case 6:
-                pembeli.jenisPengguna();  
-                break;
-            case 7:
-                System.out.println("Keluar dari menu pembeli.");
-                return;
-            default:
-                System.out.println("Pilihan tidak valid.");
-        }
-    }
-}
-
-
-    private void lihatProduk() {
-        System.out.println("=== Daftar Produk ===");
-        
-    }
-
-    private void lihatRatingProduk() {
-        System.out.print("Masukkan nama produk untuk melihat rating: ");
-        String namaProduk = scanner.nextLine();
-        double rating = Produk.cekRatingProduk(namaProduk);
-        if (rating != -1) {
-            System.out.println("Rating produk " + namaProduk + ": " + rating + " bintang");
-        } else {
-            System.out.println("Produk tidak ditemukan.");
-        }
-    }
-
-    private void beliProduk() {
-        System.out.print("Masukkan nama produk yang ingin dibeli: ");
-        String namaProduk = scanner.nextLine();
-        boolean berhasil = Produk.beliProduk(namaProduk);
-        if (berhasil) {
-            System.out.println("Produk " + namaProduk + " berhasil dibeli.");
-            beriRatingProduk(namaProduk);
-        } else {
-            System.out.println("Produk tidak ditemukan atau gagal membeli produk.");
-        }
-    }
-
-    private void beriRatingProduk(String namaProduk) {
-        System.out.print("Berikan rating untuk produk " + namaProduk + " (1-5): ");
-        int rating = scanner.nextInt();
-        scanner.nextLine(); // Clear buffer
-
-        if (rating >= 1 && rating <= 5) {
-            boolean berhasil = Produk.berikanRating(namaProduk, rating, pembeli.getNama());
-            if (berhasil) {
-                System.out.println("Rating " + rating + " berhasil diberikan untuk produk " + namaProduk + ".");
-                RewardUlasan reward = new RewardUlasan(pembeli.getNama(), "Ulasan produk " + namaProduk, rating);
-                daftarReward.add(reward);
-            } else {
-                System.out.println("Gagal memberikan rating.");
+            switch (pilihan) {
+                case 1:
+                    Produk.tampilkanSemuaProduk();  // Tampilkan semua produk
+                    break;
+                case 2:
+                    // Minta pengguna memasukkan nama produk yang ingin dibeli
+                    System.out.print("Masukkan nama produk yang ingin dibeli: ");
+                    String namaProduk = scanner.nextLine();
+                    if (pembeli.beliProduk(namaProduk)) {
+                        System.out.println("Produk berhasil dibeli.");
+                    } else {
+                        System.out.println("Gagal membeli produk.");
+                    }
+                    break;
+                case 3:
+                    tampilkanSubMenuRating();  // Menampilkan sub-menu untuk rating
+                    break;
+                case 4:
+                    pembeli.tampilkanReward();  // Menampilkan daftar reward
+                    break;
+                case 5:
+                    pembeli.jenisPengguna();  // Menampilkan profil pembeli
+                    break;
+                case 6:
+                    System.out.println("Keluar dari menu pembeli.");
+                    return;  // Keluar dari menu pembeli
+                default:
+                    System.out.println("Pilihan tidak valid.");
             }
-        } else {
-            System.out.println("Rating harus antara 1 dan 5.");
         }
     }
 
-    private void tampilkanReward() {
-        System.out.println("=== Daftar Reward ===");
-        if (daftarReward.isEmpty()) {
-            System.out.println("Belum ada reward.");
-        } else {
-            for (RewardUlasan reward : daftarReward) {
-                reward.tampilkanReward();
-                System.out.println("---------------------------");
+
+    private void tampilkanSubMenuRating() {
+        int subMenuPilihan;
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("========= Sub-Menu Berikan Rating =========");
+            System.out.println("1. Tampilkan Produk yang Sudah Dibeli (Belum Diberi Rating)");
+            System.out.println("2. Berikan Rating pada Produk yang Sudah Dibeli");
+            System.out.println("3. Tampilkan Produk yang Sudah Diberi Rating");
+            System.out.println("4. Kembali ke Menu Pembeli");
+            System.out.print("Pilih sub-menu : ");
+            subMenuPilihan = scanner.nextInt();
+            scanner.nextLine(); // Clear buffer
+
+            switch (subMenuPilihan) {
+                case 1:
+                    pembeli.tampilkanProdukBelumDiberiRating();  // Tampilkan produk yang sudah dibeli tapi belum diberi rating
+                    break;
+                case 2:
+                    if (pembeli.isProdukSudahDibeli()) {
+                        // Minta pengguna memasukkan nama produk yang ingin diberi rating
+                        System.out.print("Masukkan nama produk yang ingin Anda beri rating: ");
+                        String namaProduk = scanner.nextLine();
+                        pembeli.beriRatingProduk(namaProduk);  // Berikan rating pada produk yang sudah dibeli
+                    } else {
+                        System.out.println("Anda harus membeli produk terlebih dahulu.");
+                    }
+                    break;
+                case 3:
+                    pembeli.tampilkanProdukDiberiRating();  // Tampilkan produk yang sudah diberi rating
+                    break;
+                case 4:
+                    System.out.println("Kembali ke menu pembeli.");
+                    return;  // Kembali ke menu utama pembeli
+                default:
+                    System.out.println("Pilihan tidak valid.");
             }
         }
     }
 }
-
-

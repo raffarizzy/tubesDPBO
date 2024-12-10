@@ -24,7 +24,6 @@ public class Main {
         System.out.println("1. Login sebagai Pembeli");
         System.out.println("2. Login sebagai Penjual");
         System.out.println("3. Login sebagai Moderator");
-        System.out.println("4. Registrasi sebagai Pembeli");
         System.out.print("Pilih: ");
         if (!scan.hasNextInt()) {
             System.out.println("Input harus berupa angka.");
@@ -45,9 +44,6 @@ public class Main {
             case 3:
                 menu = loginModerator(scan);
                 break;
-            case 4:
-                registrasiPembeli(scan);
-                break;
             default:
                 System.out.println("Pilihan tidak valid.");
                 break;
@@ -61,9 +57,9 @@ public class Main {
     }
 
     public static Menu loginPembeli(Scanner scan) {
-        System.out.print("Masukkan email Pembeli: ");
+        System.out.print("Masukkan email: ");
         String email = scan.nextLine();
-        System.out.print("Masukkan password Pembeli: ");
+        System.out.print("Masukkan password: ");
         String password = scan.nextLine();
 
         Pembeli pembeli = Pembeli.cariPembeli(email);
@@ -77,9 +73,9 @@ public class Main {
     }
 
     public static Menu loginPenjual(Scanner scan) {
-        System.out.print("Masukkan email Penjual: ");
+        System.out.print("Masukkan email: ");
         String email = scan.nextLine();
-        System.out.print("Masukkan password Penjual: ");
+        System.out.print("Masukkan password: ");
         String password = scan.nextLine();
 
         Penjual penjual = Penjual.cariPenjual(email);
@@ -93,9 +89,9 @@ public class Main {
     }
 
     public static Menu loginModerator(Scanner scan) {
-        System.out.print("Masukkan email Moderator: ");
+        System.out.print("Masukkan email: ");
         String email = scan.nextLine();
-        System.out.print("Masukkan password Moderator: ");
+        System.out.print("Masukkan password: ");
         String password = scan.nextLine();
 
         Moderator moderator = Moderator.cariModerator(email);
@@ -106,29 +102,6 @@ public class Main {
             System.out.println("Email atau password salah.");
             return null;
         }
-    }
-
-    public static void registrasiPembeli(Scanner scan) {
-        System.out.println("=== Registrasi Pembeli ===");
-        System.out.print("Masukkan nama Pembeli: ");
-        String nama = scan.nextLine();
-        System.out.print("Masukkan email Pembeli: ");
-        String email = scan.nextLine();
-        System.out.print("Masukkan password Pembeli: ");
-        String password = scan.nextLine();
-        System.out.print("Masukkan nomor telepon Pembeli: ");
-        String nomorTelepon = scan.nextLine();
-
-        // Cek apakah email sudah digunakan
-        Pembeli existingPembeli = Pembeli.cariPembeli(email);
-        if (existingPembeli != null) {
-            System.out.println("Email sudah terdaftar. Silakan gunakan email lain.");
-            return;
-        }
-
-        Pembeli pembeli = new Pembeli(nama, email, password, nomorTelepon);
-        Pembeli.tambahPembeli(pembeli);
-        System.out.println("Registrasi berhasil! Anda dapat login sekarang.");
     }
 }
 
