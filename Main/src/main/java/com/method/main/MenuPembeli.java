@@ -11,7 +11,7 @@ public class MenuPembeli implements Menu {
 
     @Override
     public void tampilkanMenu() {
-        System.out.println("=============== Menu Pembeli ===============");
+        System.out.println("====================== Menu Pembeli ======================");
         System.out.println("1. Lihat Produk");
         System.out.println("2. Beli Produk");
         System.out.println("3. Berikan Rating");
@@ -29,40 +29,34 @@ public class MenuPembeli implements Menu {
             tampilkanMenu();
             System.out.print("Pilih menu : ");
             pilihan = scanner.nextInt();
-            scanner.nextLine(); // Clear buffer
+            scanner.nextLine();
 
             switch (pilihan) {
                 case 1:
-                    Produk.tampilkanSemuaProduk();  // Tampilkan semua produk
+                    Produk.tampilkanSemuaProduk();
                     break;
                 case 2:
-                    // Minta pengguna memasukkan nama produk yang ingin dibeli
                     System.out.print("Masukkan nama produk yang ingin dibeli: ");
                     String namaProduk = scanner.nextLine();
-                    if (pembeli.beliProduk(namaProduk)) {
-                        System.out.println("Produk berhasil dibeli.");
-                    } else {
-                        System.out.println("Gagal membeli produk.");
-                    }
+                    pembeli.beliProduk(namaProduk);
                     break;
                 case 3:
-                    tampilkanSubMenuRating();  // Menampilkan sub-menu untuk rating
+                    tampilkanSubMenuRating();
                     break;
                 case 4:
-                    pembeli.tampilkanReward();  // Menampilkan daftar reward
+                    pembeli.tampilkanReward();
                     break;
                 case 5:
-                    pembeli.jenisPengguna();  // Menampilkan profil pembeli
+                    pembeli.jenisPengguna();
                     break;
                 case 6:
                     System.out.println("Keluar dari menu pembeli.");
-                    return;  // Keluar dari menu pembeli
+                    return;
                 default:
                     System.out.println("Pilihan tidak valid.");
             }
         }
     }
-
 
     private void tampilkanSubMenuRating() {
         int subMenuPilihan;
@@ -76,31 +70,27 @@ public class MenuPembeli implements Menu {
             System.out.println("4. Kembali ke Menu Pembeli");
             System.out.print("Pilih sub-menu : ");
             subMenuPilihan = scanner.nextInt();
-            scanner.nextLine(); // Clear buffer
+            scanner.nextLine();
 
             switch (subMenuPilihan) {
                 case 1:
-                    pembeli.tampilkanProdukBelumDiberiRating();  // Tampilkan produk yang sudah dibeli tapi belum diberi rating
+                    pembeli.tampilkanProdukBelumDiberiRating();
                     break;
                 case 2:
-                    if (pembeli.isProdukSudahDibeli()) {
-                        // Minta pengguna memasukkan nama produk yang ingin diberi rating
-                        System.out.print("Masukkan nama produk yang ingin Anda beri rating: ");
-                        String namaProduk = scanner.nextLine();
-                        pembeli.beriRatingProduk(namaProduk);  // Berikan rating pada produk yang sudah dibeli
-                    } else {
-                        System.out.println("Anda harus membeli produk terlebih dahulu.");
-                    }
+                    System.out.print("Masukkan nama produk yang ingin Anda beri rating: ");
+                    String namaProduk = scanner.nextLine();
+                    pembeli.beriRatingProduk(namaProduk);
                     break;
                 case 3:
-                    pembeli.tampilkanProdukDiberiRating();  // Tampilkan produk yang sudah diberi rating
+                    pembeli.tampilkanProdukDiberiRating();
                     break;
                 case 4:
                     System.out.println("Kembali ke menu pembeli.");
-                    return;  // Kembali ke menu utama pembeli
+                    return;
                 default:
                     System.out.println("Pilihan tidak valid.");
             }
         }
     }
 }
+
