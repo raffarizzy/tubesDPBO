@@ -25,7 +25,7 @@ public class Pembeli extends Pengguna {
     }
     
     public static Menu loginPembeli(Scanner scan) {
-        System.out.println("====================== Login Pembeli ======================");
+        System.out.println("======================= Login Pembeli ======================");
         System.out.print("Email: ");
         String email = scan.nextLine();
         System.out.print("Password: ");

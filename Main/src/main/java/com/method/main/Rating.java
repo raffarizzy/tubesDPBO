@@ -2,12 +2,11 @@ package com.method.main;
 
 public class Rating {
     private String pengguna;
-    private String ulasan;
     private int ratingBintang;
+    private String tanggalUlasan;
 
     public Rating(String pengguna, String ulasan, int ratingBintang) {
         this.pengguna = pengguna;
-        this.ulasan = ulasan;
         this.ratingBintang = ratingBintang;
     }
 
@@ -18,14 +17,6 @@ public class Rating {
 
     public void setPengguna(String pengguna) {
         this.pengguna = pengguna;
-    }
-
-    public String getUlasan() {
-        return ulasan;
-    }
-
-    public void setUlasan(String ulasan) {
-        this.ulasan = ulasan;
     }
 
     public int getRatingBintang() {
@@ -40,10 +31,9 @@ public class Rating {
         }
     }
 
-    // Menampilkan rating
-    public void displayRating() {
-        System.out.println("Pengguna      : " + pengguna);
-        System.out.println("Ulasan        : " + ulasan);
-        System.out.println("Rating        : " + ratingBintang + " bintang");
+    @Override
+    public String toString() {
+        return "Pengguna      : " + pengguna + "\n" +
+               "Rating        : " + ratingBintang + " bintang";
     }
 }
