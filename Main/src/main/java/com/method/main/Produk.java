@@ -76,11 +76,11 @@ public class Produk {
     }
 
     // Method untuk memberikan rating
-    public static boolean berikanRating(String namaProduk, int rating, String pengguna) {
+    public static boolean berikanRating(String namaProduk, String tanggalUlasan, int rating, String pengguna) {
         for (Produk produk : daftarProduk) {
             if (produk.getNama().equalsIgnoreCase(namaProduk)) {
                 // Menambahkan rating untuk produk
-                Rating newRating = new Rating(pengguna, "Ulasan produk " + namaProduk, rating);
+                Rating newRating = new Rating(pengguna, "Ulasan produk " + namaProduk, tanggalUlasan, rating);
                 daftarRating.add(newRating);
                 return true;
             }
@@ -89,35 +89,32 @@ public class Produk {
     }
 
     // Menampilkan rating produk
-    public static double cekRatingProduk(String namaProduk) {
-        int totalRating = 0;
-        int jumlahRating = 0;
-        for (Rating rating : daftarRating) {
-            if (rating.getUlasan().contains(namaProduk)) {
-                totalRating += rating.getRatingBintang();
-                jumlahRating++;
-            }
-        }
-        if (jumlahRating > 0) {
-            return (double) totalRating / jumlahRating;
-        } else {
-            return -1;  // Jika tidak ada rating, kembalikan -1
-        }
-    }
+//    public static double cekRatingProduk(String namaProduk) {
+//        int totalRating = 0;
+//        int jumlahRating = 0;
+//        for (Rating rating : daftarRating) {
+//            if (rating.getRatingBintang().contains(namaProduk)) {
+//                totalRating += rating.getRatingBintang();
+//                jumlahRating++;
+//            }
+//        }
+//        if (jumlahRating > 0) {
+//            return (double) totalRating / jumlahRating;
+//        } else {
+//            return -1;
+//        }
+//    }
 
-    // Menampilkan informasi produk
     public void tampilkanInfo() {
         System.out.println("Nama Produk : " + nama);
         System.out.println("Harga       : Rp" + harga);
         System.out.println("Deskripsi   : " + deskripsi);
     }
 
-    // Menambahkan metode getDaftarProduk() untuk mengakses daftar produk
     public static ArrayList<Produk> getDaftarProduk() {
         return daftarProduk;
     }
 
-    // Menambahkan metode getDaftarRating() untuk mengakses daftar rating
     public static ArrayList<Rating> getDaftarRating() {
         return daftarRating;
     }

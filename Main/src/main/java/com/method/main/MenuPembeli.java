@@ -79,8 +79,12 @@ public class MenuPembeli implements Menu {
                 case 2:
                     System.out.print("Masukkan nama produk yang ingin Anda beri rating: ");
                     String namaProduk = scanner.nextLine();
-                    pembeli.beriRatingProduk(namaProduk);
+                {
+                    String tanggalUlasan = null;
+                    pembeli.beriRatingProduk(namaProduk, tanggalUlasan);
+                }
                     break;
+
                 case 3:
                     pembeli.tampilkanProdukDiberiRating();
                     break;
