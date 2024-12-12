@@ -1,5 +1,6 @@
 package com.method.main;
 
+import pembeli.Pembeli;
 import java.util.Scanner;
 
 public class Main {
@@ -24,10 +25,7 @@ public class Main {
 
             switch (pilihan) {
                 case 1:
-                    Menu menuPembeli = Pembeli.loginPembeli(scanner);
-                    if (menuPembeli != null) {
-                        menuPembeli.aksi();
-                    }
+                    Pembeli.loginPembeli(scanner);
                     break;
                 case 2:
                     System.out.println("Fitur login penjual belum tersedia."); //implementasiin mahh

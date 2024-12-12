@@ -1,5 +1,6 @@
-package com.method.main;
+package penjual;
 
+import pembeli.Rating;
 import java.util.ArrayList;
 
 /**

@@ -1,5 +1,6 @@
-package com.method.main;
+package moderator;
 
+import com.method.main.Pengguna;
 import java.util.ArrayList;
 
 public class Moderator extends Pengguna {

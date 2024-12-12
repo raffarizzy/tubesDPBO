@@ -1,4 +1,4 @@
-package com.method.main;
+package pembeli;
 
 public class Komentar {
     private String namaProduk;

@@ -1,5 +1,6 @@
-package com.method.main;
+package penjual;
 
+import com.method.main.Menu;
 import java.util.Scanner;
 
 public class MenuPenjual implements Menu {
