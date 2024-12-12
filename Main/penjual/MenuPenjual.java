@@ -36,9 +36,9 @@ public class MenuPenjual implements Menu {
                 case 1:
                     tambahProduk();
                     break;
-                case 2:
-                    lihatProduk();
-                    break;
+//                case 2:
+//                    lihatProduk();
+//                    break;
                 case 3:
                     balasUlasan();
                     break;
@@ -74,10 +74,10 @@ public class MenuPenjual implements Menu {
         System.out.println("Produk berhasil ditambahkan!\n");
     }
 
-    private void lihatProduk() {
-        System.out.println("=== Daftar Produk ===");
-        Produk.tampilkanSemuaProduk();
-    }
+//    private void lihatProduk() {
+//        System.out.println("=== Daftar Produk ===");
+//        Produk.tampilkanInfo();
+//    }
 
     private void balasUlasan() {
         System.out.println("=== Balas Ulasan ===");

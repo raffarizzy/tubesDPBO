@@ -1,17 +1,26 @@
 package com.method.main;
 
 public class Rating {
+    private String namaProduk;
     private String pengguna;
-    private String ulasan;
+    private String tanggalUlasan;
     private int ratingBintang;
 
-    public Rating(String pengguna, String ulasan, int ratingBintang) {
+    public Rating(String namaProduk, String pengguna, String tanggalUlasan, int ratingBintang) {
+        this.namaProduk = namaProduk;
         this.pengguna = pengguna;
-        this.ulasan = ulasan;
+        this.tanggalUlasan = tanggalUlasan;
         this.ratingBintang = ratingBintang;
     }
 
-    // Getter dan Setter
+    public String getNamaProduk() {
+        return namaProduk;
+    }
+    
+    public void setNamaProduk(String namaProduk) {
+        this.namaProduk = namaProduk;
+    }
+    
     public String getPengguna() {
         return pengguna;
     }
@@ -19,13 +28,13 @@ public class Rating {
     public void setPengguna(String pengguna) {
         this.pengguna = pengguna;
     }
-
-    public String getUlasan() {
-        return ulasan;
+    
+    public String getTanggalUlasan() {
+        return tanggalUlasan;
     }
 
-    public void setUlasan(String ulasan) {
-        this.ulasan = ulasan;
+    public void setTanggalUlasan(String tanggalUlasan) {
+        this.tanggalUlasan = tanggalUlasan;
     }
 
     public int getRatingBintang() {
@@ -40,10 +49,10 @@ public class Rating {
         }
     }
 
-    // Menampilkan rating
-    public void displayRating() {
-        System.out.println("Pengguna      : " + pengguna);
-        System.out.println("Ulasan        : " + ulasan);
-        System.out.println("Rating        : " + ratingBintang + " bintang");
+    @Override
+    public String toString() {
+        return "Pengguna       : " + pengguna + "\n" +
+               "Tanggal Ulasan : " + tanggalUlasan +
+               "Rating         : " + ratingBintang + " bintang";
     }
 }

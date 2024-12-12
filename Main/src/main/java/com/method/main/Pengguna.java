@@ -69,23 +69,4 @@ public abstract class Pengguna {
         System.out.println("Nomor Telepon: " + nomorTelepon);
         System.out.println();
     }
-
-    public boolean login(String email, String password) {
-        return email != null && password != null && email.equals(this.email) && password.equals(this.password);
-    }
-
-    public boolean ubahPassword(String passwordLama, String passwordBaru) {
-        if (passwordLama.equals(this.password)) {
-            if (passwordBaru != null && passwordBaru.length() >= 6) {
-                this.password = passwordBaru;
-                System.out.println("Password berhasil diubah.");
-                return true;
-            } else {
-                System.out.println("Password baru harus memiliki minimal 6 karakter.");
-            }
-        } else {
-            System.out.println("Password lama tidak cocok.");
-        }
-        return false;
-    }
 }

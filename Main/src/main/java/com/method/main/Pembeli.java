@@ -5,50 +5,122 @@ import java.util.Scanner;
 
 public class Pembeli extends Pengguna {
     private static ArrayList<Pembeli> daftarPembeli = new ArrayList<Pembeli>() {{
-        add(new Pembeli("Rahmah Aisyah", "rahmah", "123", "081234567890"));
         add(new Pembeli("Dhea Sri Noor Septianiz", "dheasrinoorseptianiz@gmail.com", "dhea123", "081234567891"));
     }};
 
+    private ArrayList<RewardUlasan> daftarReward;
+    private boolean produkSudahDibeli = false;
+
     public Pembeli(String nama, String email, String password, String nomorTelepon) {
         super(nama, email, password, nomorTelepon);
+        this.daftarReward = new ArrayList<>();
     }
 
-    @Override
-    public void jenisPengguna(){
-        System.out.println("[=== PEMBELI ===]");
-        super.tampilkanProfil();
+    public static ArrayList<Pembeli> getDaftarPembeli() {
+        return daftarPembeli;
     }
 
-    // Method untuk menambahkan pembeli ke daftar
-    public static void tambahPembeli(Pembeli pembeli) {
-        daftarPembeli.add(pembeli);
+    public boolean isProdukSudahDibeli() {
+        return produkSudahDibeli;
     }
+    
+    public static Menu loginPembeli(Scanner scan) {
+        System.out.println("======================= Login Pembeli ======================");
+        System.out.print("Email: ");
+        String email = scan.nextLine();
+        System.out.print("Password: ");
+        String password = scan.nextLine();
 
-    // Method untuk mencari pembeli berdasarkan email
-    public static Pembeli cariPembeli(String email) {
         for (Pembeli pembeli : daftarPembeli) {
-            if (pembeli.getEmail().equals(email)) {
-                return pembeli;
+            if (pembeli.getEmail().equals(email) && pembeli.getPassword().equals(password)) {
+                System.out.println("Login berhasil. Selamat datang, " + pembeli.getNama() + "!");
+                return new MenuPembeli(pembeli);
+            }
+        }
+        System.out.println("Login gagal. Email atau password salah.");
+        return null;
+    }
+
+    public void lihatProduk() {
+        System.out.println("=== Daftar Produk ===");
+        for (Produk produk : Produk.getDaftarProduk()) {
+            produk.tampilkanInfo();
+            System.out.println("---------------------------");
+        }
+    }
+
+    public boolean beliProduk(String namaProduk) {
+        Produk produk = cariProduk(namaProduk); 
+        if (produk != null) {
+            this.produkSudahDibeli = true;
+            System.out.println("Produk " + produk.getNama() + " berhasil dibeli.");
+            return true;
+        } else {
+            System.out.println("Produk tidak ditemukan.");
+            return false;
+        }
+    }
+
+    public void beriRatingProduk(String namaProduk, String tanggalUlasan) {
+        if (!produkSudahDibeli) {
+            System.out.println("Anda harus membeli produk terlebih dahulu sebelum memberikan rating.");
+            return;
+        }
+
+        Produk produk = cariProduk(namaProduk); 
+        if (produk != null) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Berikan rating untuk produk " + produk.getNama() + " (1-5): ");
+            int rating = scanner.nextInt();
+            scanner.nextLine(); 
+
+            if (rating >= 1 && rating <= 5) {
+                boolean berhasil = Produk.berikanRating(namaProduk, tanggalUlasan, rating, this.getNama());
+                if (berhasil) {
+                    System.out.println("Rating " + rating + " berhasil diberikan untuk produk " + produk.getNama() + ".");
+                } else {
+                    System.out.println("Gagal memberikan rating.");
+                }
+            } else {
+                System.out.println("Rating harus antara 1 dan 5.");
+            }
+        } else {
+            System.out.println("Produk tidak ditemukan.");
+        }
+    }
+    
+    private Produk cariProduk(String namaProduk) {
+        for (Produk produk : Produk.getDaftarProduk()) {
+            if (produk.getNama().equalsIgnoreCase(namaProduk)) {
+                return produk;
             }
         }
         return null;
     }
-    
-    public static Menu loginPembeli(Scanner scan) {
-        System.out.print("Masukkan email Pembeli: ");
-        String email = scan.nextLine();
-        System.out.print("Masukkan password Pembeli: ");
-        String password = scan.nextLine();
 
-        Pembeli pembeli = cariPembeli(email);
-        if (pembeli != null && pembeli.login(email, password)) {
-            pembeli.jenisPengguna(); 
-            return new MenuPembeli(pembeli);
+    public void tampilkanReward() {
+        System.out.println("=== Daftar Reward ===");
+        if (this.daftarReward.isEmpty()) {
+            System.out.println("Belum ada reward.");
         } else {
-            System.out.println("Email atau password salah.");
-            return null;
+            for (RewardUlasan reward : this.daftarReward) {
+                reward.tampilkanReward();
+                System.out.println("------------------------------------------------------");
+            }
         }
     }
+    
+    public void tampilkanProdukBelumDiberiRating() {
+        System.out.println("Produk yang sudah dibeli namun belum diberi rating belum tersedia.");
+    }
+
+    public void tampilkanProdukDiberiRating() {
+        System.out.println("Produk yang sudah diberi rating belum tersedia.");
+    }
+
+    @Override
+    public void jenisPengguna() {
+        System.out.println("[=============== PEMBELI ===============]");
+        super.tampilkanProfil();
+    }
 }
-
-
