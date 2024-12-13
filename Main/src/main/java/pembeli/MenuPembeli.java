@@ -43,7 +43,7 @@ public class MenuPembeli implements Menu {
                     pembeli.beliProduk(namaProduk);
                     break;
                 case 3:
-                    tampilkanSubMenuRating();
+                    //tampilkanSubMenuRating();
                     break;
                 case 4:
                     pembeli.tampilkanReward();
@@ -59,7 +59,7 @@ public class MenuPembeli implements Menu {
             }
         }
     }
-
+    /*
     private void tampilkanSubMenuRating() {
         int subMenuPilihan;
         Scanner scanner = new Scanner(System.in);
@@ -98,5 +98,6 @@ public class MenuPembeli implements Menu {
             }
         }
     }
+*/
 }
 

@@ -56,3 +56,4 @@ public class Rating {
                "Rating         : " + ratingBintang + " bintang";
     }
 }
+

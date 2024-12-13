@@ -63,7 +63,7 @@ public class Pembeli extends Pengguna {
             return false;
         }
     }
-
+    /*
     public void beriRatingProduk(String namaProduk, String tanggalUlasan) {
         if (!produkSudahDibeli) {
             System.out.println("Anda harus membeli produk terlebih dahulu sebelum memberikan rating.");
@@ -91,7 +91,7 @@ public class Pembeli extends Pengguna {
             System.out.println("Produk tidak ditemukan.");
         }
     }
-    
+    */
     private Produk cariProduk(String namaProduk) {
         for (Produk produk : Produk.getDaftarProduk()) {
             if (produk.getNama().equalsIgnoreCase(namaProduk)) {

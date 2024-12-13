@@ -2,6 +2,7 @@ package com.method.main;
 
 import pembeli.Pembeli;
 import java.util.Scanner;
+import penjual.Penjual;
 
 public class Main {
     public static void main(String[] args) {
@@ -28,7 +29,7 @@ public class Main {
                     Pembeli.loginPembeli(scanner);
                     break;
                 case 2:
-                    System.out.println("Fitur login penjual belum tersedia."); //implementasiin mahh
+                    Penjual.loginPenjual(scanner);
                     break;
                 case 3:
                     System.out.println("Fitur login moderator belum tersedia."); //implementasiin raff
