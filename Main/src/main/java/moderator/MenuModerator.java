@@ -22,7 +22,7 @@ public class MenuModerator implements Menu {
         System.out.println("3. Hapus Komentar");
         System.out.println("4. Lihat Daftar Produk");
         System.out.println("5. Tampilkan Profil");
-        System.out.println("6. Keluar");
+        System.out.println("6. Logout");
     }
 
     @Override

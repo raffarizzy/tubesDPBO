@@ -1,21 +1,44 @@
 package moderator;
 
+import moderator.MenuModerator;
+import com.method.main.Menu;
 import com.method.main.Pengguna;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Moderator extends Pengguna {
-    private String areaTugas; // Contoh: kategori produk, lokasi, jenis konten
     private int jumlahUlasanDihapus;
     private int jumlahKomentarDihapus;
-    private static ArrayList<Moderator> daftarModerator = new ArrayList<>();
+    private static final ArrayList<Moderator> daftarModerator = new ArrayList<>() {{
+        add(new Moderator("Raffa", "raffarizkyf@gmail.com", "raffa123", "085138229382"));
+    }};
 
-    public Moderator(String nama, String email, String password, String nomorTelepon, String areaTugas) {
+    public Moderator(String nama, String email, String password, String nomorTelepon) {
         super(nama, email, password, nomorTelepon);
-        this.areaTugas = areaTugas;
         this.jumlahUlasanDihapus = 0;
         this.jumlahKomentarDihapus = 0;
     }
 
+public static boolean loginModerator(Scanner scan) { 
+    while (true) { 
+        System.out.println("======================= Login Moderator ======================");
+        System.out.print("Email: ");
+        String email = scan.nextLine();
+        System.out.print("Password: ");
+        String password = scan.nextLine();
+
+        Moderator moderator = cariModerator(email, password);
+        if (moderator != null) {
+            System.out.println("Login berhasil. Selamat datang, " + moderator.getNama() + "!");
+            MenuModerator menu = new MenuModerator(moderator);
+            menu.aksi(); 
+            return true; 
+        } else {
+            System.out.println("Login gagal. Email atau password salah. Coba lagi.");
+        }
+    }
+}
+     
     @Override
     public void jenisPengguna(){
         System.out.println("[=== MODERATOR ===]");
@@ -28,26 +51,13 @@ public class Moderator extends Pengguna {
     }
 
     // Method untuk mencari moderator berdasarkan email
-    public static Moderator cariModerator(String email) {
+    public static Moderator cariModerator(String email, String password) {
         for (Moderator moderator : daftarModerator) {
-            if (moderator.getEmail().equals(email)) {
+            if (moderator.getEmail().equals(email) && moderator.getPassword().equals(password)) {
                 return moderator;
             }
         }
         return null;
-    }
-
-    // Getter dan Setter untuk areaTugas
-    public String getAreaTugas() {
-        return areaTugas;
-    }
-
-    public void setAreaTugas(String areaTugas) {
-        if (areaTugas != null && !areaTugas.isEmpty()) {
-            this.areaTugas = areaTugas;
-        } else {
-            System.out.println("Area tugas tidak valid.");
-        }
     }
 
     public int getJumlahUlasanDihapus() {
@@ -82,7 +92,6 @@ public class Moderator extends Pengguna {
     @Override
     public void tampilkanProfil() {
         super.tampilkanProfil();
-        System.out.println("Area Tugas            : " + areaTugas);
         System.out.println("Jumlah Ulasan Dihapus : " + jumlahUlasanDihapus);
         System.out.println("Jumlah Komentar Dihapus: " + jumlahKomentarDihapus);
     }
