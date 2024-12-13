@@ -98,7 +98,6 @@ public class Pembeli extends Pengguna {
         }
         return null;
     }
-
     
     public void tampilkanProdukBelumDiberiRating() {
         System.out.println("Produk yang sudah dibeli namun belum diberi rating belum tersedia.");
