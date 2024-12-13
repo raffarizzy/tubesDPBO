@@ -1,7 +1,5 @@
 package moderator;
 
-//hallo
-
 import com.method.main.Pengguna;
 import java.util.ArrayList;
 
