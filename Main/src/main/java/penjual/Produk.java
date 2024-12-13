@@ -44,7 +44,6 @@ public class Produk {
                 Rating.tampilkanRating(produk.getNama());
                 System.out.println("---------------------------");
             }
-            menuProduk();
         }
     }
 
@@ -74,6 +73,8 @@ public class Produk {
                     break;
                 case 3:
                     menuPenjual.aksi();
+                default:
+                    System.out.println("Pilihan tidak valid! Silakan coba lagi.");
             }
         }
     }
