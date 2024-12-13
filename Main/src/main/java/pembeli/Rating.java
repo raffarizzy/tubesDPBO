@@ -64,7 +64,6 @@ public class Rating {
         return daftarRating;
     }
 
-    // Menampilkan rating berdasarkan nama produk
     public static void tampilkanRating(String namaProduk) {
         ArrayList<Rating> daftarRating = Rating.getDaftarRating();
         

@@ -34,7 +34,7 @@ public class Produk {
     public static ArrayList<Produk> getDaftarProduk() {
         return daftarProduk;
     }
-    // Menampilkan semua produk
+
     public void tampilkanSemuaProduk() {
         if (daftarProduk.isEmpty()) {
             System.out.println("Tidak ada produk yang tersedia.");

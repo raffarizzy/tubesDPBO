@@ -61,35 +61,35 @@ public class Pembeli extends Pengguna {
             return false;
         }
     }
-    /*
-    public void beriRatingProduk(String namaProduk, String tanggalUlasan) {
-        if (!produkSudahDibeli) {
-            System.out.println("Anda harus membeli produk terlebih dahulu sebelum memberikan rating.");
-            return;
-        }
-
-        Produk produk = cariProduk(namaProduk); 
-        if (produk != null) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Berikan rating untuk produk " + produk.getNama() + " (1-5): ");
-            int rating = scanner.nextInt();
-            scanner.nextLine(); 
-
-            if (rating >= 1 && rating <= 5) {
-                boolean berhasil = Produk.berikanRating(namaProduk, tanggalUlasan, rating, this.getNama());
-                if (berhasil) {
-                    System.out.println("Rating " + rating + " berhasil diberikan untuk produk " + produk.getNama() + ".");
-                } else {
-                    System.out.println("Gagal memberikan rating.");
-                }
-            } else {
-                System.out.println("Rating harus antara 1 dan 5.");
-            }
-        } else {
-            System.out.println("Produk tidak ditemukan.");
-        }
-    }
-    */
+    
+//    public void beriRatingProduk(String namaProduk, String tanggalUlasan) {
+//        if (!produkSudahDibeli) {
+//            System.out.println("Anda harus membeli produk terlebih dahulu sebelum memberikan rating.");
+//            return;
+//        }
+//
+//        Produk produk = cariProduk(namaProduk); 
+//        if (produk != null) {
+//            Scanner scanner = new Scanner(System.in);
+//            System.out.print("Berikan rating untuk produk " + produk.getNama() + " (1-5): ");
+//            int rating = scanner.nextInt();
+//            scanner.nextLine(); 
+//
+//            if (rating >= 1 && rating <= 5) {
+//                boolean berhasil = Produk.berikanRating(namaProduk, tanggalUlasan, rating, this.getNama());
+//                if (berhasil) {
+//                    System.out.println("Rating " + rating + " berhasil diberikan untuk produk " + produk.getNama() + ".");
+//                } else {
+//                    System.out.println("Gagal memberikan rating.");
+//                }
+//            } else {
+//                System.out.println("Rating harus antara 1 dan 5.");
+//            }
+//        } else {
+//            System.out.println("Produk tidak ditemukan.");
+//        }
+//    }
+    
     private Produk cariProduk(String namaProduk) {
         for (Produk produk : Produk.getDaftarProduk()) {
             if (produk.getNama().equalsIgnoreCase(namaProduk)) {

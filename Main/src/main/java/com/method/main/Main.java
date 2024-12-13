@@ -32,7 +32,7 @@ public class Main {
                     Penjual.loginPenjual(scanner);
                     break;
                 case 3:
-                    System.out.println("Fitur login moderator belum tersedia."); //implementasiin raff
+                    System.out.println("Fitur login moderator belum tersedia."); //raffa
                     break;
                 case 4:
                     System.out.println("|==========================================================|");
