@@ -4,15 +4,18 @@ import com.method.main.Menu;
 import java.util.Scanner;
 
 public class MenuPenjual implements Menu {
-    private final Penjual penjual;
-    private final Produk produk;
+    private Penjual penjual;
+    private Produk produk;
     Scanner scanner = new Scanner(System.in);
 
     public MenuPenjual(Penjual penjual) {
         this.penjual = penjual;
         this.produk = new Produk();
     }
-
+    
+    public MenuPenjual(){
+    }
+    
     @Override
     public void tampilkanMenu() {
         System.out.println("=== Menu Penjual ===");
@@ -23,21 +26,20 @@ public class MenuPenjual implements Menu {
 
     @Override
     public void aksi() {
-        int pilihan;
-
+        
         while (true) {
             tampilkanMenu();
             System.out.print("Pilih menu: ");
-            pilihan = scanner.nextInt();
+            int pilihan = scanner.nextInt();
 
             switch (pilihan) {
                 case 1:
-                    produk.tampilkanSemuaProduk();
+                    produk.menuProduk();
                     break;
                 case 2:
                     penjual.jenisPengguna();
                     break;
-                case 5:
+                case 3:
                     System.out.println("Keluar dari menu penjual.");
                     return;
                 default:
@@ -45,14 +47,4 @@ public class MenuPenjual implements Menu {
             }
         }
     }
-
-
-    private void balasUlasan() {
-        System.out.println("=== Balas Ulasan ===");
-        // Implementasi logika balas ulasan
-        System.out.println("Fitur ini masih dalam pengembangan.");
-    }
-
-    
 }
-

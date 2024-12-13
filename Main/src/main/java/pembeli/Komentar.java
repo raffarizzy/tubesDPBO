@@ -1,7 +1,16 @@
 package pembeli;
 
+import java.util.ArrayList;
+
 public class Komentar {
     private String komentarText;
+
+    private static final ArrayList<Komentar> daftarKomentar = new ArrayList<>() {{
+        add(new Komentar("Produk sangat sesuai harapan"));
+        add(new Komentar("Cukup memuaskan"));
+        add(new Komentar("Kualitas suara bagus"));
+        add(new Komentar("Nyaman dipakai sepanjang hari"));
+    }};
 
     public Komentar(String komentarText) {
         this.komentarText = komentarText;
@@ -15,8 +24,7 @@ public class Komentar {
         this.komentarText = komentarText;
     }
 
-    @Override
-    public String toString() {
-        return "Komentar: " + komentarText;
+    public static ArrayList<Komentar> getDaftarKomentar() {
+        return daftarKomentar;
     }
 }

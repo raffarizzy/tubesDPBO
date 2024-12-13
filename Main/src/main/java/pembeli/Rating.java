@@ -11,16 +11,16 @@ public class Rating {
 
     private static ArrayList<Rating> daftarRating = new ArrayList<>() {{
         Rating rating1 = new Rating("Laptop ABC", "Kroos", "2024-12-01", 5);
-        rating1.tambahKomentar(new Komentar("Produk sangat sesuai harapan"));
+        rating1.tambahKomentar(Komentar.getDaftarKomentar().get(0));
 
         Rating rating2 = new Rating("Laptop ABC", "Bellingham", "2024-12-02", 4);
-        rating2.tambahKomentar(new Komentar("Cukup memuaskan"));
+        rating2.tambahKomentar(Komentar.getDaftarKomentar().get(1));
 
         Rating rating3 = new Rating("Headphone DEF", "Modric", "2024-12-03", 4);
-        rating3.tambahKomentar(new Komentar("Kualitas suara bagus"));
+        rating3.tambahKomentar(Komentar.getDaftarKomentar().get(2));
 
         Rating rating4 = new Rating("Headphone DEF", "Bale", "2024-12-04", 5);
-        rating4.tambahKomentar(new Komentar("Nyaman dipakai sepanjang hari"));
+        rating4.tambahKomentar(Komentar.getDaftarKomentar().get(3));
 
         add(rating1);
         add(rating2);
@@ -40,48 +40,54 @@ public class Rating {
         this.daftarKomentar.add(komentar);
     }
 
-    public ArrayList<Komentar> getDaftarKomentar() {
-        return daftarKomentar;
-    }
-
     public String getNamaProduk() {
         return namaProduk;
     }
 
-    public void setNamaProduk(String namaProduk) {
-        this.namaProduk = namaProduk;
+    public ArrayList<Komentar> getDaftarKomentar() {
+        return daftarKomentar;
     }
 
     public String getPengguna() {
         return pengguna;
     }
 
-    public void setPengguna(String pengguna) {
-        this.pengguna = pengguna;
-    }
-
     public String getTanggalUlasan() {
         return tanggalUlasan;
-    }
-
-    public void setTanggalUlasan(String tanggalUlasan) {
-        this.tanggalUlasan = tanggalUlasan;
     }
 
     public int getRatingBintang() {
         return ratingBintang;
     }
 
-    public void setRatingBintang(int ratingBintang) {
-        if (ratingBintang >= 1 && ratingBintang <= 5) {
-            this.ratingBintang = ratingBintang;
-        } else {
-            System.out.println("Rating harus antara 1 dan 5.");
-        }
-    }
-
     public static ArrayList<Rating> getDaftarRating() {
         return daftarRating;
+    }
+
+    // Menampilkan rating berdasarkan nama produk
+    public static void tampilkanRating(String namaProduk) {
+        ArrayList<Rating> daftarRating = Rating.getDaftarRating();
+        
+        boolean ditemukan = false;
+        for (Rating rating : daftarRating) {
+            if (rating.getNamaProduk().equals(namaProduk)) {
+                ditemukan = true;
+                System.out.println("Rating untuk produk " + namaProduk + ": ");
+                System.out.println("=======================================");
+                System.out.println("Pengguna       : " + rating.getPengguna());
+                System.out.println("Tanggal Ulasan : " + rating.getTanggalUlasan());
+                System.out.println("Rating         : " + rating.getRatingBintang() + " bintang");
+                System.out.println("Komentar       : ");
+                for (Komentar komentar : rating.getDaftarKomentar()) {
+                    System.out.println("  - " + komentar.getKomentarText());
+                }
+                System.out.println("=======================================");
+            }
+        }
+
+        if (!ditemukan) {
+            System.out.println("Belum ada rating untuk produk ini.");
+        }
     }
 
     @Override

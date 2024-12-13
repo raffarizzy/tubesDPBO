@@ -1,12 +1,16 @@
 package penjual;
 
-
+import java.util.Scanner;
 import java.util.ArrayList;
+import pembeli.Komentar;
+import pembeli.Rating;
 
 public class Produk {
     private String nama;
     private int harga;
     private String deskripsi;
+    //private final LaporUlasan laporUlasan;
+    private MenuPenjual menuPenjual;
     
     private static final ArrayList<Produk> daftarProduk = new ArrayList<>() {{
         add(new Produk("Laptop ABC", 5000000, "Laptop dengan spesifikasi tinggi dan desain elegan."));
@@ -20,7 +24,7 @@ public class Produk {
     }
     
     public Produk(){
-    
+        this.menuPenjual = new MenuPenjual();
     }
     
     public String getNama() {
@@ -30,15 +34,17 @@ public class Produk {
     public static ArrayList<Produk> getDaftarProduk() {
         return daftarProduk;
     }
-
+    // Menampilkan semua produk
     public void tampilkanSemuaProduk() {
         if (daftarProduk.isEmpty()) {
             System.out.println("Tidak ada produk yang tersedia.");
         } else {
             for (Produk produk : daftarProduk) {
                 produk.tampilkanInfo();
+                Rating.tampilkanRating(produk.getNama());
                 System.out.println("---------------------------");
             }
+            menuProduk();
         }
     }
 
@@ -47,4 +53,29 @@ public class Produk {
         System.out.println("Harga       : Rp" + harga);
         System.out.println("Deskripsi   : " + deskripsi);
     }
+    
+    public void menuProduk(){
+        while(true) {
+            tampilkanSemuaProduk();
+            System.out.println("=== Tinjau Produk ===");
+            System.out.println("1. Balas Ulasan");
+            System.out.println("2. Lapor Ulasan");
+            System.out.println("3. Keluar");
+            System.out.print("Pilih menu: ");
+            Scanner sc = new Scanner(System.in);
+            int pilih = sc.nextInt();
+            
+            switch(pilih) {
+                case 1 :
+                    //LaporUlasan.balasUlasan();
+                    break;
+                case 2 :
+                    //balasUlasan();
+                    break;
+                case 3:
+                    menuPenjual.aksi();
+            }
+        }
+    }
+    
 }
