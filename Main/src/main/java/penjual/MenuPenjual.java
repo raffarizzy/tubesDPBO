@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class MenuPenjual implements Menu {
     private final Penjual penjual;
-    private Produk produk;
+    private final Produk produk;
     Scanner scanner = new Scanner(System.in);
 
     public MenuPenjual(Penjual penjual) {

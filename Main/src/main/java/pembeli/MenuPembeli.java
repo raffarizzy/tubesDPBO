@@ -5,21 +5,21 @@ import penjual.Produk;
 import java.util.Scanner;
 
 public class MenuPembeli implements Menu {
+    private final Produk produk;
     private final Pembeli pembeli;
 
     public MenuPembeli(Pembeli pembeli) {
         this.pembeli = pembeli;
+        this.produk = new Produk();
     }
 
     @Override
     public void tampilkanMenu() {
         System.out.println("======================= Menu Pembeli =======================");
         System.out.println("1. Lihat Produk");
-        System.out.println("2. Beli Produk");
-        System.out.println("3. Berikan Rating");
-        System.out.println("4. Tampilkan Reward");
-        System.out.println("5. Profil");
-        System.out.println("6. Keluar");
+        System.out.println("2. Berikan Rating");
+        System.out.println("3. Profil");
+        System.out.println("4. Keluar");
     }
 
     @Override
@@ -35,7 +35,7 @@ public class MenuPembeli implements Menu {
 
             switch (pilihan) {
                 case 1:
-                    Produk.tampilkanSemuaProduk();
+                    produk.tampilkanSemuaProduk();
                     break;
                 case 2:
                     System.out.print("Masukkan nama produk yang ingin dibeli: ");
@@ -44,9 +44,6 @@ public class MenuPembeli implements Menu {
                     break;
                 case 3:
                     //tampilkanSubMenuRating();
-                    break;
-                case 4:
-                    pembeli.tampilkanReward();
                     break;
                 case 5:
                     pembeli.jenisPengguna();

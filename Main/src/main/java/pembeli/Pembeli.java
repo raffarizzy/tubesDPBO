@@ -11,12 +11,10 @@ public class Pembeli extends Pengguna {
         add(new Pembeli("Dhea Sri Noor Septianiz", "dheasrinoorseptianiz@gmail.com", "dhea123", "081234567891"));
     }};
 
-    private ArrayList<RewardUlasan> daftarReward;
     private boolean produkSudahDibeli = false;
 
     public Pembeli(String nama, String email, String password, String nomorTelepon) {
         super(nama, email, password, nomorTelepon);
-        this.daftarReward = new ArrayList<>();
     }
 
     public static ArrayList<Pembeli> getDaftarPembeli() {
@@ -101,17 +99,6 @@ public class Pembeli extends Pengguna {
         return null;
     }
 
-    public void tampilkanReward() {
-        System.out.println("=== Daftar Reward ===");
-        if (this.daftarReward.isEmpty()) {
-            System.out.println("Belum ada reward.");
-        } else {
-            for (RewardUlasan reward : this.daftarReward) {
-                reward.tampilkanReward();
-                System.out.println("------------------------------------------------------");
-            }
-        }
-    }
     
     public void tampilkanProdukBelumDiberiRating() {
         System.out.println("Produk yang sudah dibeli namun belum diberi rating belum tersedia.");

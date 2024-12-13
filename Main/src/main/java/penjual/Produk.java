@@ -4,10 +4,10 @@ package penjual;
 import java.util.ArrayList;
 
 public class Produk {
-    private final String nama;
-    private final int harga;
-
-    private final String deskripsi;
+    private String nama;
+    private int harga;
+    private String deskripsi;
+    
     private static final ArrayList<Produk> daftarProduk = new ArrayList<>() {{
         add(new Produk("Laptop ABC", 5000000, "Laptop dengan spesifikasi tinggi dan desain elegan."));
         add(new Produk("Headphone DEF", 300000, "Headphone dengan kualitas suara terbaik dan nyaman digunakan."));
@@ -17,6 +17,10 @@ public class Produk {
         this.nama = nama;
         this.harga = harga;
         this.deskripsi = deskripsi;
+    }
+    
+    public Produk(){
+    
     }
     
     public String getNama() {

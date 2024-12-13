@@ -4,11 +4,13 @@ import penjual.Produk;
 import java.util.Scanner;
 
 public class MenuModerator implements Menu {
+    private final Produk produk;
     private Moderator moderator;
     private Scanner scanner;
 
     public MenuModerator(Moderator moderator) {
         this.moderator = moderator;
+        this.produk = new Produk();
         this.scanner = new Scanner(System.in);
     }
 
@@ -71,7 +73,7 @@ public class MenuModerator implements Menu {
 
     private void lihatProduk() {
         System.out.println("=== Daftar Produk ===");
-        Produk.tampilkanSemuaProduk();
+        produk.tampilkanSemuaProduk();
     }
     
     private void lihatLaporan() {
