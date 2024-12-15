@@ -66,21 +66,19 @@ public class Rating {
 
     public static void tampilkanRating(String namaProduk) {
         ArrayList<Rating> daftarRating = Rating.getDaftarRating();
-        
+
         boolean ditemukan = false;
         for (Rating rating : daftarRating) {
             if (rating.getNamaProduk().equals(namaProduk)) {
                 ditemukan = true;
-                System.out.println("Rating untuk produk " + namaProduk + ": ");
-                System.out.println("=======================================");
                 System.out.println("Pengguna       : " + rating.getPengguna());
                 System.out.println("Tanggal Ulasan : " + rating.getTanggalUlasan());
                 System.out.println("Rating         : " + rating.getRatingBintang() + " bintang");
-                System.out.println("Komentar       : ");
+                System.out.print("Komentar       : "); 
                 for (Komentar komentar : rating.getDaftarKomentar()) {
-                    System.out.println("  - " + komentar.getKomentarText());
+                    System.out.print(komentar.getKomentarText()); 
                 }
-                System.out.println("=======================================");
+                System.out.println(""); 
             }
         }
 
@@ -88,6 +86,7 @@ public class Rating {
             System.out.println("Belum ada rating untuk produk ini.");
         }
     }
+
 
     @Override
     public String toString() {

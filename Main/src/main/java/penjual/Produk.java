@@ -39,10 +39,15 @@ public class Produk {
         if (daftarProduk.isEmpty()) {
             System.out.println("Tidak ada produk yang tersedia.");
         } else {
+            System.out.println("============================================================================");
+            System.out.println("                                DAFTAR PRODUK                               ");
+            System.out.println("============================================================================");
+
             for (Produk produk : daftarProduk) {
                 produk.tampilkanInfo();
-                Rating.tampilkanRating(produk.getNama());
-                System.out.println("---------------------------");
+                System.out.println("\nUlasan dan Rating:");
+                Rating.tampilkanRating(produk.getNama()); 
+                System.out.println("----------------------------------------------------------------------------");
             }
         }
     }

@@ -19,7 +19,7 @@ public class Penjual extends Pengguna{
     
     public static void loginPenjual(Scanner scan) {
         while (true) { 
-            System.out.println("======================= Login Penjual ======================");
+            System.out.println("================================ Login Penjual ==============================");
             System.out.print("Email: ");
             String email = scan.nextLine();
             System.out.print("Password: ");

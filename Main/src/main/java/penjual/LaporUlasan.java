@@ -6,13 +6,12 @@ import pembeli.Komentar;
 public class LaporUlasan {
     private static ArrayList<Komentar> ulasanDilanggar = new ArrayList<>();
 
-    // Melaporkan ulasan yang melanggar ketentuan
+    
     public static void laporUlasan(Komentar ulasan) {
         ulasanDilanggar.add(ulasan);
         System.out.println("Ulasan berhasil dilaporkan dan akan ditinjau oleh moderator.");
     }
 
-    // Menampilkan laporan ulasan
     public static void tampilkanLaporan() {
         if (ulasanDilanggar.isEmpty()) {
             System.out.println("Tidak ada ulasan yang dilaporkan.");
@@ -24,7 +23,6 @@ public class LaporUlasan {
         }
     }
 
-    // Mengambil dan menampilkan ulasan yang dapat dilaporkan
     public static void pilihDanLaporUlasan(ArrayList<Komentar> daftarUlasan) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Pilih ulasan yang ingin dilaporkan (masukkan index): ");
