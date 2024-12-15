@@ -82,6 +82,5 @@ public class Produk {
                     System.out.println("Pilihan tidak valid! Silakan coba lagi.");
             }
         }
-    }
-    
+    }  
 }

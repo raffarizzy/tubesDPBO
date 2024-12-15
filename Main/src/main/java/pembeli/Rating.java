@@ -74,11 +74,13 @@ public class Rating {
                 System.out.println("Pengguna       : " + rating.getPengguna());
                 System.out.println("Tanggal Ulasan : " + rating.getTanggalUlasan());
                 System.out.println("Rating         : " + rating.getRatingBintang() + " bintang");
-                System.out.print("Komentar       : "); 
+                System.out.print("Komentar       : ");
+
                 for (Komentar komentar : rating.getDaftarKomentar()) {
-                    System.out.print(komentar.getKomentarText()); 
+                    System.out.println(komentar.getKomentarText());
                 }
-                System.out.println(""); 
+
+                System.out.println();
             }
         }
 
@@ -86,6 +88,9 @@ public class Rating {
             System.out.println("Belum ada rating untuk produk ini.");
         }
     }
+
+    
+    
 
 
     @Override
