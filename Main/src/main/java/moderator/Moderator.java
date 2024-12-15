@@ -10,7 +10,7 @@ public class Moderator extends Pengguna {
     private int jumlahUlasanDihapus;
     private int jumlahKomentarDihapus;
     private static final ArrayList<Moderator> daftarModerator = new ArrayList<>() {{
-        add(new Moderator("Raffa", "raffarizkyf@gmail.com", "raffa123", "085138229382"));
+        add(new Moderator("Raffa", "raffa@gmail.com", "raffa123", "085138229382"));
     }};
 
     public Moderator(String nama, String email, String password, String nomorTelepon) {

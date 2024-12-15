@@ -79,6 +79,7 @@ public class Rating {
                     System.out.print(komentar.getKomentarText()); 
                 }
                 System.out.println(""); 
+                System.out.println("");
             }
         }
 
@@ -98,5 +99,22 @@ public class Rating {
             result += "  - " + komentar.getKomentarText() + "\n";
         }
         return result;
+    }
+    
+    public static void hapusRating(String namaProduk, String pengguna) {
+        boolean ditemukan = false;
+        for (int i = 0; i < daftarRating.size(); i++) {
+            Rating rating = daftarRating.get(i);
+            if (rating.getNamaProduk().equals(namaProduk) && rating.getPengguna().equals(pengguna)) {
+                daftarRating.remove(i);  // Remove the rating
+                ditemukan = true;
+                System.out.println("Rating oleh pengguna " + pengguna + " untuk produk " + namaProduk + " telah dihapus.");
+                break;
+            }
+        }
+
+        if (!ditemukan) {
+            System.out.println("Rating tidak ditemukan untuk produk " + namaProduk + " oleh pengguna " + pengguna + ".");
+        }
     }
 }

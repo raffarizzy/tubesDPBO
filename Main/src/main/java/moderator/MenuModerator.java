@@ -1,6 +1,7 @@
 package moderator;
 import com.method.main.Menu;
 import penjual.Produk;
+import pembeli.Rating;
 import java.util.Scanner;
 
 public class MenuModerator implements Menu {
@@ -59,11 +60,46 @@ public class MenuModerator implements Menu {
         }
     }
 
-    private void hapusUlasan() {
-        System.out.print("Masukkan ID ulasan yang ingin dihapus: ");
-        String ulasanId = scanner.nextLine();
-        moderator.hapusUlasan(ulasanId);
+private void hapusUlasan() {
+    System.out.print("Masukan nama produk: ");
+    String namaProduk = scanner.nextLine();
+    boolean produkDitemukan = false;
+    
+    // Pengecekan apakah produk ada dalam daftar produk
+    for (Produk p : Produk.getDaftarProduk()) {
+        if (namaProduk.equals(p.getNama())) {
+            produkDitemukan = true;
+            break;
+        }
     }
+    
+    if (!produkDitemukan) {
+        System.out.println("Nama produk tidak ditemukan!");
+        return;  // Keluar dari metode jika produk tidak ditemukan
+    }
+    
+    System.out.print("Masukkan nama pengguna ulasan yang ingin dihapus: ");
+    String namaPengguna = scanner.nextLine();
+    boolean penggunaDitemukan = false;
+    
+    // Pengecekan apakah pengguna ada dalam daftar rating
+    for (Rating r : Rating.getDaftarRating()) {
+        if (namaPengguna.equals(r.getPengguna())) {
+            penggunaDitemukan = true;
+            break;
+        }
+    }
+    
+    if (!penggunaDitemukan) {
+        System.out.println("Nama pengguna tidak ditemukan!");
+        return;  // Keluar dari metode jika pengguna tidak ditemukan
+    }
+    
+    // Menghapus rating jika produk dan pengguna ditemukan
+    Rating.hapusRating(namaProduk, namaPengguna);
+    System.out.println("Ulasan berhasil dihapus.");
+}
+
 
     private void hapusKomentar() {
         System.out.print("Masukkan ID komentar yang ingin dihapus: ");
