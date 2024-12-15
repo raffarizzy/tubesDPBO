@@ -3,6 +3,7 @@ package com.method.main;
 import pembeli.Pembeli;
 import java.util.Scanner;
 import moderator.Moderator;
+import pembeli.MenuPembeli;
 import penjual.Penjual;
 
 public class Main {
@@ -27,7 +28,9 @@ public class Main {
 
             switch (pilihan) {
                 case 1:
-                    Pembeli.loginPembeli(scanner);
+                    Pembeli pembeli = Pembeli.loginPembeli(scanner);
+                    MenuPembeli menuPembeli = new MenuPembeli(pembeli);
+                    menuPembeli.aksi();
                     break;
                 case 2:
                     Penjual.loginPenjual(scanner);

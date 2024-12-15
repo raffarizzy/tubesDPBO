@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-
-
 public class Penjual extends Pengguna{
     private static final ArrayList<Penjual> daftarPenjual = new ArrayList<>() {{
         add(new Penjual("rahmah", "rahmah@gmail", "123", "0853"));

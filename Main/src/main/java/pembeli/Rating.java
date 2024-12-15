@@ -13,13 +13,13 @@ public class Rating {
         Rating rating1 = new Rating("Laptop ABC", "Kroos", "2024-12-01", 5);
         rating1.tambahKomentar(Komentar.getDaftarKomentar().get(0));
 
-        Rating rating2 = new Rating("Laptop ABC", "Bellingham", "2024-12-02", 4);
+        Rating rating2 = new Rating("Laptop ABC", "Thanos", "2024-12-02", 4);
         rating2.tambahKomentar(Komentar.getDaftarKomentar().get(1));
 
         Rating rating3 = new Rating("Headphone DEF", "Modric", "2024-12-03", 4);
         rating3.tambahKomentar(Komentar.getDaftarKomentar().get(2));
 
-        Rating rating4 = new Rating("Headphone DEF", "Bale", "2024-12-04", 5);
+        Rating rating4 = new Rating("Headphone DEF", "Wanda", "2024-12-04", 5);
         rating4.tambahKomentar(Komentar.getDaftarKomentar().get(3));
 
         add(rating1);
