@@ -5,12 +5,17 @@ import com.method.main.Menu;
 import com.method.main.Pengguna;
 import java.util.ArrayList;
 import java.util.Scanner;
+import pembeli.Rating;
+import penjual.Produk;
 
 public class Moderator extends Pengguna {
     private int jumlahUlasanDihapus;
     private int jumlahKomentarDihapus;
+    private Scanner scanner;
+    
+    
     private static final ArrayList<Moderator> daftarModerator = new ArrayList<>() {{
-        add(new Moderator("Raffa", "raffarizkyf@gmail.com", "raffa123", "085138229382"));
+        add(new Moderator("Raffa", "raffa@gmail.com", "raffa123", "085138229382"));
     }};
 
     public Moderator(String nama, String email, String password, String nomorTelepon) {
@@ -66,16 +71,6 @@ public static boolean loginModerator(Scanner scan) {
 
     public int getJumlahKomentarDihapus() {
         return jumlahKomentarDihapus;
-    }
-
-    // Method untuk menghapus ulasan
-    public void hapusUlasan(String ulasanId) {
-        if (ulasanId != null && !ulasanId.isEmpty()) {
-            System.out.println("Ulasan dengan ID " + ulasanId + " berhasil dihapus oleh moderator.");
-            jumlahUlasanDihapus++;
-        } else {
-            System.out.println("ID ulasan tidak valid.");
-        }
     }
 
     // Method untuk menghapus komentar
