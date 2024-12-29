@@ -89,10 +89,6 @@ public class Rating {
         }
     }
 
-    
-    
-
-
     @Override
     public String toString() {
         String result = "Pengguna       : " + pengguna + "\n" +

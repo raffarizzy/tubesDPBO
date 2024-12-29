@@ -11,7 +11,7 @@ public class Produk {
     private String deskripsi;
     //private final LaporUlasan laporUlasan;
     private MenuPenjual menuPenjual;
-    
+
     private static final ArrayList<Produk> daftarProduk = new ArrayList<>() {{
         add(new Produk("Laptop ABC", 5000000, "Laptop dengan spesifikasi tinggi dan desain elegan."));
         add(new Produk("Headphone DEF", 300000, "Headphone dengan kualitas suara terbaik dan nyaman digunakan."));
