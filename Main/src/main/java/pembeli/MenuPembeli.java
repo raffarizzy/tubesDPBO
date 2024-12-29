@@ -5,12 +5,10 @@ import penjual.Produk;
 import java.util.Scanner;
 
 public class MenuPembeli implements Menu {
-    private final Produk produk;
     private final Pembeli pembeli;
 
     public MenuPembeli(Pembeli pembeli) {
         this.pembeli = pembeli;
-        this.produk = new Produk();
     }
 
     @Override
@@ -37,7 +35,8 @@ public class MenuPembeli implements Menu {
 
             switch (pilihan) {
                 case 1:
-                    produk.menuProduk(); 
+                    Produk.initializeDaftarProduk();
+                    Produk.tampilkanSemuaProduk();
                     break;
                 case 2:
                     pembeli.tampilkanProdukSudahDibeli(); 

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Pembeli extends Pengguna {
     private static ArrayList<Pembeli> daftarPembeli = new ArrayList<>() {{
-        add(new Pembeli("Dhea Sri Noor Septianiz", "dhea@gmail.com", "dhea123", "081234567891"));
+        add(new Pembeli("Dhea Sri Noor Septianiz", "dhea@gmail", "321", "081234567891"));
     }};
 
     private final ArrayList<String> produkYangSudahDibeli = new ArrayList<>();

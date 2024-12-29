@@ -26,6 +26,9 @@ public class Produk {
         this.menuPenjual = new MenuPenjual();
     }
     
+    /**
+     *
+     */
     public static void initializeDaftarProduk(){
         ArrayList<Produk> produkRahmah = new ArrayList<>();
         produkRahmah.add(new Produk("Laptop ABC", 5000000, "Laptop dengan spesifikasi tinggi dan desain elegan."));
@@ -38,15 +41,16 @@ public class Produk {
         return daftarProduk;
     }
 
-    public void tampilkanSemuaProduk() {
-        if (daftarProduk.isEmpty()) {
+    public static void tampilkanSemuaProduk() {
+        
+        if (getDaftarProduk().isEmpty()) {
             System.out.println("Tidak ada produk yang tersedia.");
         } else {
             System.out.println("==============================================================================");
             System.out.println("                                DAFTAR PRODUK                               ");
             System.out.println("==============================================================================");
             
-            for (Map.Entry<String, ArrayList<Produk>> entry : daftarProduk.entrySet()) {
+            for (Map.Entry<String, ArrayList<Produk>> entry : getDaftarProduk().entrySet()) {
                 String penjual = entry.getKey();
                 ArrayList<Produk> produkList = entry.getValue();
                 
@@ -77,7 +81,7 @@ public class Produk {
     
     public void menuProduk(){
         initializeDaftarProduk();
-        try (Scanner sc = new Scanner(System.in)){
+        Scanner sc = new Scanner(System.in);
             while(true) {
                 tampilkanSemuaProduk();
                 System.out.println("=== Tinjau Produk ===");
@@ -100,6 +104,6 @@ public class Produk {
                         System.out.println("Pilihan tidak valid! Silakan coba lagi.");
                 }
             }
-        }
+        
     }  
 }
