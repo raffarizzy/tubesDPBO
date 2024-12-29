@@ -85,7 +85,7 @@ public class Rating {
         }
 
         if (!ditemukan) {
-            System.out.println("Belum ada rating untuk produk ini.");
+            System.out.println("Belum ada ulasan untuk produk ini.");
         }
     }
 
@@ -99,5 +99,21 @@ public class Rating {
             result += "  - " + komentar.getKomentarText() + "\n";
         }
         return result;
+    }
+    
+    public static void hapusRating(String namaProduk, String pengguna) {
+        boolean ditemukan = false;
+        for (int i = 0; i < daftarRating.size(); i++) {
+            Rating rating = daftarRating.get(i);
+            if (rating.getNamaProduk().equals(namaProduk) && rating.getPengguna().equals(pengguna)) {
+                daftarRating.remove(i);  // Remove the rating
+                ditemukan = true;
+                break;
+            }
+        }
+
+        if (!ditemukan) {
+            System.out.println("Ulasan tidak ditemukan untuk produk " + namaProduk + " oleh pengguna " + pengguna + ".");
+        }
     }
 }

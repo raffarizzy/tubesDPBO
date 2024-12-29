@@ -27,4 +27,8 @@ public class Komentar {
     public static ArrayList<Komentar> getDaftarKomentar() {
         return daftarKomentar;
     }
+    
+    public static void hapusKomentar(int urutan) {
+        daftarKomentar.get(urutan).setKomentarText("**Komentar telah dihapus oleh moderator**");
+    }
 }
