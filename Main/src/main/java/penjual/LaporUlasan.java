@@ -25,12 +25,19 @@ public class LaporUlasan {
 
     public static void pilihDanLaporUlasan(ArrayList<Komentar> daftarUlasan) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Pilih ulasan yang ingin dilaporkan (masukkan index): ");
-        for (int i = 0; i < daftarUlasan.size(); i++) {
-            System.out.println(i + ". " + daftarUlasan.get(i).getKomentarText());
+        if (daftarUlasan.isEmpty()) {
+            System.out.println("Tidak ada ulasan untuk dipilih.");
+            return;
         }
 
-        int index = sc.nextInt();
+        System.out.println("Pilih ulasan yang ingin dilaporkan (masukkan angka index): ");
+        for (int i = 0; i < daftarUlasan.size(); i++) {
+            System.out.println((i+1) + ". " + daftarUlasan.get(i).getKomentarText());
+        }
+
+        System.out.print("Masukkan pilihan Anda: ");
+        int index = sc.nextInt() - 1;
+        
         if (index >= 0 && index < daftarUlasan.size()) {
             laporUlasan(daftarUlasan.get(index));
         } else {

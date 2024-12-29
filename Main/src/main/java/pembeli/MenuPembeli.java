@@ -37,7 +37,7 @@ public class MenuPembeli implements Menu {
 
             switch (pilihan) {
                 case 1:
-                    produk.tampilkanSemuaProduk(); 
+                    produk.menuProduk(); 
                     break;
                 case 2:
                     pembeli.tampilkanProdukSudahDibeli(); 

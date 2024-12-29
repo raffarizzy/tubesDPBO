@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class Komentar {
     private String komentarText;
 
-    private static final ArrayList<Komentar> daftarKomentar = new ArrayList<>() {{
+    public static ArrayList<Komentar> daftarKomentar = new ArrayList<>() {{
         add(new Komentar("Produk sangat sesuai harapan"));
         add(new Komentar("Cukup memuaskan"));
         add(new Komentar("Kualitas suara bagus"));
         add(new Komentar("Nyaman dipakai sepanjang hari"));
+        add(new Komentar("Pengiriman lama, tidak sesuai deskripsi."));
+        add(new Komentar("Sangat mengecewakan, produk cacat."));
     }};
 
     public Komentar(String komentarText) {

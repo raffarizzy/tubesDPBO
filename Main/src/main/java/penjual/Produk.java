@@ -4,13 +4,14 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import pembeli.Komentar;
 import pembeli.Rating;
 
 public class Produk {
     private String nama;
     private int harga;
     private String deskripsi;
-    //private final LaporUlasan laporUlasan;
+    private ArrayList<Komentar> daftarUlasan;
     private MenuPenjual menuPenjual;
 
     private static HashMap<String, ArrayList<Produk>> daftarProduk = new HashMap<>();
@@ -25,7 +26,7 @@ public class Produk {
         this.menuPenjual = new MenuPenjual();
     }
     
-    private static void initializeDaftarProduk(){
+    public static void initializeDaftarProduk(){
         ArrayList<Produk> produkRahmah = new ArrayList<>();
         produkRahmah.add(new Produk("Laptop ABC", 5000000, "Laptop dengan spesifikasi tinggi dan desain elegan."));
         produkRahmah.add(new Produk("Headphone DEF", 300000, "Headphone dengan kualitas suara terbaik dan nyaman digunakan."));
@@ -49,7 +50,7 @@ public class Produk {
                 String penjual = entry.getKey();
                 ArrayList<Produk> produkList = entry.getValue();
                 
-                System.out.println("Penjual\t: " + penjual);
+                System.out.println("Penjual\t\t: " + penjual);
                 for (Produk produk : produkList) {
                     produk.tampilkanInfo();
                     System.out.println("\nUlasan dan Rating");
@@ -62,12 +63,16 @@ public class Produk {
 
     public void tampilkanInfo() {
         System.out.println("Nama Produk\t: " + nama);
-        System.out.println("Harga\t: Rp" + harga);
+        System.out.println("Harga\t\t: Rp" + harga);
         System.out.println("Deskripsi\t: " + deskripsi);
     }
     
     public String getNama() {
         return nama;
+    }
+    
+    public void tambahUlasan(Komentar komentar) {
+        daftarUlasan.add(komentar);
     }
     
     public void menuProduk(){
@@ -87,7 +92,7 @@ public class Produk {
                         //LaporUlasan.balasUlasan();
                         break;
                     case 2 :
-                        //balasUlasan();
+                        LaporUlasan.pilihDanLaporUlasan(daftarUlasan);
                         break;
                     case 3:
                         menuPenjual.aksi();
