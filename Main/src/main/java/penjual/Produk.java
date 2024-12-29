@@ -42,7 +42,7 @@ public class Produk {
     }
 
     public static void tampilkanSemuaProduk() {
-        
+        initializeDaftarProduk();
         if (getDaftarProduk().isEmpty()) {
             System.out.println("Tidak ada produk yang tersedia.");
         } else {
@@ -99,7 +99,8 @@ public class Produk {
                         LaporUlasan.pilihDanLaporUlasan(daftarUlasan);
                         break;
                     case 3:
-                        menuPenjual.aksi();
+                        System.out.println("Kembali ke menu sebelumnya...");
+                        return;
                     default:
                         System.out.println("Pilihan tidak valid! Silakan coba lagi.");
                 }

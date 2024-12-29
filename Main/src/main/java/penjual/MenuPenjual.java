@@ -44,6 +44,7 @@ public class MenuPenjual implements Menu {
                     return;
                 default:
                     System.out.println("Pilihan tidak valid.");
+                    break;
             }
         }
     }
