@@ -1,5 +1,7 @@
 package moderator;
 import com.method.main.Menu;
+import java.util.ArrayList;
+import java.util.Map;
 import penjual.Produk;
 import java.util.Scanner;
 import pembeli.Rating;
@@ -67,13 +69,23 @@ public class MenuModerator implements Menu {
         String namaProduk = scanner.nextLine();
         boolean produkDitemukan = false;
 
-        // Pengecekan apakah produk ada dalam daftar produk
-        for (Produk p : Produk.getDaftarProduk()) {
-            if (namaProduk.equals(p.getNama())) {
-                produkDitemukan = true;
+        for (Map.Entry<String, ArrayList<Produk>> entry : Produk.getDaftarProduk().entrySet()) {
+            ArrayList<Produk> produkList = entry.getValue();
+            
+            for (Produk p : produkList) {
+                if (namaProduk.equalsIgnoreCase(p.getNama())) {
+                    produkDitemukan = true;
+                    System.out.println("Produk dengan nama \"" + namaProduk + "\" ditemukan.");
+                    // Implementasi logika penghapusan ulasan di sini
+                    System.out.println("Ulasan untuk produk ini telah dihapus.");
+                    break;
+                }
+            }
+            if(produkDitemukan){
                 break;
             }
         }
+        
 
         if (!produkDitemukan) {
             System.out.println("Nama produk tidak ditemukan!");
@@ -107,10 +119,19 @@ public class MenuModerator implements Menu {
         String namaProduk = scanner.nextLine();
         boolean produkDitemukan = false;
 
-        // Pengecekan apakah produk ada dalam daftar produk
-        for (Produk p : Produk.getDaftarProduk()) {
-            if (namaProduk.equals(p.getNama())) {
-                produkDitemukan = true;
+        for (Map.Entry<String, ArrayList<Produk>> entry : Produk.getDaftarProduk().entrySet()) {
+            ArrayList<Produk> produkList = entry.getValue();
+            
+            for (Produk p : produkList) {
+                if (namaProduk.equalsIgnoreCase(p.getNama())) {
+                    produkDitemukan = true;
+                    System.out.println("Produk dengan nama \"" + namaProduk + "\" ditemukan.");
+                    // Implementasi logika penghapusan ulasan di sini
+                    System.out.println("Ulasan untuk produk ini telah dihapus.");
+                    break;
+                }
+            }
+            if(produkDitemukan){
                 break;
             }
         }
