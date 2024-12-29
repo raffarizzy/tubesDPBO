@@ -2,7 +2,8 @@ package penjual;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import pembeli.Komentar;
+import java.util.HashMap;
+import java.util.Map;
 import pembeli.Rating;
 
 public class Produk {
@@ -12,26 +13,27 @@ public class Produk {
     //private final LaporUlasan laporUlasan;
     private MenuPenjual menuPenjual;
 
-    private static final ArrayList<Produk> daftarProduk = new ArrayList<>() {{
-        add(new Produk("Laptop ABC", 5000000, "Laptop dengan spesifikasi tinggi dan desain elegan."));
-        add(new Produk("Headphone DEF", 300000, "Headphone dengan kualitas suara terbaik dan nyaman digunakan."));
-    }};
-
+    private static HashMap<String, ArrayList<Produk>> daftarProduk = new HashMap<>();
+    
     public Produk(String nama, int harga, String deskripsi) {
         this.nama = nama;
         this.harga = harga;
         this.deskripsi = deskripsi;
     }
     
-    public Produk(){
+    public Produk() {
         this.menuPenjual = new MenuPenjual();
     }
     
-    public String getNama() {
-        return nama;
+    private static void initializeDaftarProduk(){
+        ArrayList<Produk> produkRahmah = new ArrayList<>();
+        produkRahmah.add(new Produk("Laptop ABC", 5000000, "Laptop dengan spesifikasi tinggi dan desain elegan."));
+        produkRahmah.add(new Produk("Headphone DEF", 300000, "Headphone dengan kualitas suara terbaik dan nyaman digunakan."));
+        
+        daftarProduk.put("Rahmah", produkRahmah);
     }
     
-    public static ArrayList<Produk> getDaftarProduk() {
+    public static HashMap<String, ArrayList<Produk>> getDaftarProduk() {
         return daftarProduk;
     }
 
@@ -42,44 +44,56 @@ public class Produk {
             System.out.println("==============================================================================");
             System.out.println("                                DAFTAR PRODUK                               ");
             System.out.println("==============================================================================");
-
-            for (Produk produk : daftarProduk) {
-                produk.tampilkanInfo();
-                System.out.println("\nUlasan dan Rating:");
-                Rating.tampilkanRating(produk.getNama()); 
-                System.out.println("------------------------------------------------------------------------------");
+            
+            for (Map.Entry<String, ArrayList<Produk>> entry : daftarProduk.entrySet()) {
+                String penjual = entry.getKey();
+                ArrayList<Produk> produkList = entry.getValue();
+                
+                System.out.println("Penjual\t: " + penjual);
+                for (Produk produk : produkList) {
+                    produk.tampilkanInfo();
+                    System.out.println("\nUlasan dan Rating");
+                    Rating.tampilkanRating(produk.getNama()); 
+                    System.out.println("------------------------------------------------------------------------------");
+                }
             }
         }
     }
 
     public void tampilkanInfo() {
-        System.out.println("Nama Produk : " + nama);
-        System.out.println("Harga       : Rp" + harga);
-        System.out.println("Deskripsi   : " + deskripsi);
+        System.out.println("Nama Produk\t: " + nama);
+        System.out.println("Harga\t: Rp" + harga);
+        System.out.println("Deskripsi\t: " + deskripsi);
+    }
+    
+    public String getNama() {
+        return nama;
     }
     
     public void menuProduk(){
-        while(true) {
-            tampilkanSemuaProduk();
-            System.out.println("=== Tinjau Produk ===");
-            System.out.println("1. Balas Ulasan");
-            System.out.println("2. Lapor Ulasan");
-            System.out.println("3. Keluar");
-            System.out.print("Pilih menu: ");
-            Scanner sc = new Scanner(System.in);
-            int pilih = sc.nextInt();
-            
-            switch(pilih) {
-                case 1 :
-                    //LaporUlasan.balasUlasan();
-                    break;
-                case 2 :
-                    //balasUlasan();
-                    break;
-                case 3:
-                    menuPenjual.aksi();
-                default:
-                    System.out.println("Pilihan tidak valid! Silakan coba lagi.");
+        initializeDaftarProduk();
+        try (Scanner sc = new Scanner(System.in)){
+            while(true) {
+                tampilkanSemuaProduk();
+                System.out.println("=== Tinjau Produk ===");
+                System.out.println("1. Balas Ulasan");
+                System.out.println("2. Lapor Ulasan");
+                System.out.println("3. Keluar");
+                System.out.print("Pilih menu: ");
+                int pilih = sc.nextInt();
+
+                switch(pilih) {
+                    case 1 :
+                        //LaporUlasan.balasUlasan();
+                        break;
+                    case 2 :
+                        //balasUlasan();
+                        break;
+                    case 3:
+                        menuPenjual.aksi();
+                    default:
+                        System.out.println("Pilihan tidak valid! Silakan coba lagi.");
+                }
             }
         }
     }  
