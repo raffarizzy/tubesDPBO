@@ -7,7 +7,7 @@ import java.util.Scanner;
 import pembeli.Rating;
 
 public class HapusUlasan {
-    public static void hapusUlasan() {
+    public static void hapusUlasan(Moderator moderator) {
         // Pastikan daftar produk diinisialisasi
         Produk.initializeDaftarProduk();
         Scanner scanner = new Scanner(System.in);
@@ -72,6 +72,7 @@ public class HapusUlasan {
 
         // Hapus rating dari produk
         Rating.hapusRating(namaProduk, namaPengguna);
+        moderator.setJumlahUlasanDihapus(1);
         System.out.println("Ulasan oleh pengguna " + namaPengguna + " untuk produk " + namaProduk + " telah dihapus.");
     }
 }

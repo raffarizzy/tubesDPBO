@@ -43,8 +43,9 @@ public class MenuModerator implements Menu {
             switch (pilihan) {
                 case 1:
                     lihatLaporan();
+                    break;
                 case 2:
-                    HapusUlasan.hapusUlasan();
+                    HapusUlasan.hapusUlasan(moderator);
                     break;
                 case 3:
                     RiwayatModerasi.tampilkanRiwayat();

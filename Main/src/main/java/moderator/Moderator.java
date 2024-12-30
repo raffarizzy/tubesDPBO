@@ -10,7 +10,6 @@ import penjual.Produk;
 
 public class Moderator extends Pengguna {
     private int jumlahUlasanDihapus;
-    private int jumlahKomentarDihapus;
     private Scanner scanner;
     
     
@@ -21,7 +20,6 @@ public class Moderator extends Pengguna {
     public Moderator(String nama, String email, String password, String nomorTelepon) {
         super(nama, email, password, nomorTelepon);
         this.jumlahUlasanDihapus = 0;
-        this.jumlahKomentarDihapus = 0;
     }
 
 public static boolean loginModerator(Scanner scan) { 
@@ -64,25 +62,14 @@ public static boolean loginModerator(Scanner scan) {
         return jumlahUlasanDihapus;
     }
 
-    public int getJumlahKomentarDihapus() {
-        return jumlahKomentarDihapus;
-    }
-
-    // Method untuk menghapus komentar
-    public void hapusKomentar(String komentarId) {
-        if (komentarId != null && !komentarId.isEmpty()) {
-            System.out.println("Komentar dengan ID " + komentarId + " berhasil dihapus oleh moderator.");
-            jumlahKomentarDihapus++;
-        } else {
-            System.out.println("ID komentar tidak valid.");
-        }
-    }
-
     // Overriding method tampilkanProfil
     @Override
     public void tampilkanProfil() {
         super.tampilkanProfil();
         System.out.println("Jumlah Ulasan Dihapus : " + jumlahUlasanDihapus);
-        System.out.println("Jumlah Komentar Dihapus: " + jumlahKomentarDihapus);
+    }
+    
+    public void setJumlahUlasanDihapus(int jumlahUlasanDihapus) {
+        this.jumlahUlasanDihapus += jumlahUlasanDihapus;
     }
 }
