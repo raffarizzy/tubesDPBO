@@ -9,6 +9,7 @@ public class LaporUlasan {
     private final String namaProduk;
     private final String namaPengguna;
     private final String komentar;
+    private static final ArrayList<LaporUlasan> ulasanDilanggar = new ArrayList<>();
 
     public LaporUlasan(String namaProduk, String namaPengguna, String komentar) {
         this.namaProduk = namaProduk;
@@ -31,8 +32,6 @@ public class LaporUlasan {
     public static ArrayList<LaporUlasan> getUlasanDilanggar() {
         return ulasanDilanggar;
     }
-
-    private static final ArrayList<LaporUlasan> ulasanDilanggar = new ArrayList<>();
 
     public static void tampilkanLaporan() {
         if (getUlasanDilanggar().isEmpty()) {
