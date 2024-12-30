@@ -9,11 +9,13 @@ import pembeli.Komentar;
 import penjual.LaporUlasan;
 
 public class MenuModerator implements Menu {
+    private final Produk produk;
     private Moderator moderator;
     private Scanner scanner;
 
     public MenuModerator(Moderator moderator) {
         this.moderator = moderator;
+        this.produk = new Produk();
         this.scanner = new Scanner(System.in);
     }
 
@@ -22,7 +24,7 @@ public class MenuModerator implements Menu {
         System.out.println("=== Menu Moderator ===");
         System.out.println("1. Lihat laporan");
         System.out.println("2. Hapus Ulasan");
-        System.out.println("3. Hapus Komentar");
+        System.out.println("3. Lihat Riwayat Moderasi");
         System.out.println("4. Lihat Daftar Produk");
         System.out.println("5. Tampilkan Profil");
         System.out.println("6. Logout");
@@ -42,13 +44,13 @@ public class MenuModerator implements Menu {
                 case 1:
                     lihatLaporan();
                 case 2:
-                    hapusUlasan();
+                    HapusUlasan.hapusUlasan();
                     break;
                 case 3:
-                    hapusKomentar();
+                    RiwayatModerasi.tampilkanRiwayat();
                     break;
                 case 4:
-                    lihatProduk();
+                    produk.tampilkanSemuaProduk();
                     break;
                 case 5:
                     moderator.tampilkanProfil();
@@ -61,64 +63,13 @@ public class MenuModerator implements Menu {
             }
         }
     }
-    
-    // Method untuk menghapus ulasan
-    private void hapusUlasan() {
-        System.out.print("Masukan nama produk: ");
-        String namaProduk = scanner.nextLine();
-        boolean produkDitemukan = false;
 
-        for (Map.Entry<String, ArrayList<Produk>> entry : Produk.getDaftarProduk().entrySet()) {
-            ArrayList<Produk> produkList = entry.getValue();
-            
-            for (Produk p : produkList) {
-                if (namaProduk.equalsIgnoreCase(p.getNama())) {
-                    produkDitemukan = true;
-                    System.out.println("Produk dengan nama \"" + namaProduk + "\" ditemukan.");
-                    // Implementasi logika penghapusan ulasan di sini
-                    System.out.println("Ulasan untuk produk ini telah dihapus.");
-                    break;
-                }
-            }
-            if(produkDitemukan){
-                break;
-            }
-        }
-        
-
-        if (!produkDitemukan) {
-            System.out.println("Nama produk tidak ditemukan!");
-            return;  // Keluar dari metode jika produk tidak ditemukan
-        }
-
-        System.out.print("Masukkan nama pengguna yang memberi ulasan: ");
-        String namaPengguna = scanner.nextLine();
-        boolean penggunaDitemukan = false;
-
-        // Pengecekan apakah pengguna ada dalam daftar rating
-        for (Rating r : Rating.getDaftarRating()) {
-            if (namaPengguna.equals(r.getPengguna())) {
-                penggunaDitemukan = true;
-                break;
-            }
-        }
-
-        if (!penggunaDitemukan) {
-            System.out.println("Nama pengguna tidak ditemukan!");
-            return;  // Keluar dari metode jika pengguna tidak ditemukan
-        }
-
-        // Menghapus rating jika produk dan pengguna ditemukan
-        Rating.hapusRating(namaProduk, namaPengguna);
-        System.out.println("Ulasan oleh pengguna " + namaPengguna + " untuk produk " + namaProduk + " telah dihapus.");
-    }
-
-    private void lihatProduk() {
+    public void lihatProduk() {
         System.out.println("=== Daftar Produk ===");
-        Produk.tampilkanSemuaProduk();
+        produk.tampilkanSemuaProduk();
     }
     
-    private void lihatLaporan() {
+    public void lihatLaporan() {
         System.out.println("=== Daftar Laporan ===");
         LaporUlasan.tampilkanLaporan();
     }

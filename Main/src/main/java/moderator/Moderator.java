@@ -50,11 +50,6 @@ public static boolean loginModerator(Scanner scan) {
         super.tampilkanProfil();
     }
 
-    // Method untuk menambahkan moderator ke daftar
-    public static void tambahModerator(Moderator moderator) {
-        daftarModerator.add(moderator);
-    }
-
     // Method untuk mencari moderator berdasarkan email
     public static Moderator cariModerator(String email, String password) {
         for (Moderator moderator : daftarModerator) {
