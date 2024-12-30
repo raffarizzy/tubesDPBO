@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class MenuPenjual implements Menu {
     private Penjual penjual;
     private Produk produk;
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     public MenuPenjual(Penjual penjual) {
         this.penjual = penjual;
