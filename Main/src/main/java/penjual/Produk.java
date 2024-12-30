@@ -93,7 +93,7 @@ public class Produk {
 
                 switch(pilih) {
                     case 1 :
-                        //LaporUlasan.balasUlasan();
+                        BalasUlasan.balasUlasan();
                         break;
                     case 2 :
                         LaporUlasan.pilihDanLaporUlasan();
