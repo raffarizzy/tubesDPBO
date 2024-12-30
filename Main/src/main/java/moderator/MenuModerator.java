@@ -1,21 +1,15 @@
 package moderator;
 import com.method.main.Menu;
-import java.util.ArrayList;
-import java.util.Map;
 import penjual.Produk;
 import java.util.Scanner;
-import pembeli.Rating;
-import pembeli.Komentar;
 import penjual.LaporUlasan;
 
 public class MenuModerator implements Menu {
-    private final Produk produk;
-    private Moderator moderator;
-    private Scanner scanner;
+    private final Moderator moderator;
+    private final Scanner scanner;
 
     public MenuModerator(Moderator moderator) {
         this.moderator = moderator;
-        this.produk = new Produk();
         this.scanner = new Scanner(System.in);
     }
 
@@ -51,7 +45,7 @@ public class MenuModerator implements Menu {
                     RiwayatModerasi.tampilkanRiwayat();
                     break;
                 case 4:
-                    produk.tampilkanSemuaProduk();
+                    Produk.tampilkanSemuaProduk();
                     break;
                 case 5:
                     moderator.tampilkanProfil();
@@ -67,7 +61,7 @@ public class MenuModerator implements Menu {
 
     public void lihatProduk() {
         System.out.println("=== Daftar Produk ===");
-        produk.tampilkanSemuaProduk();
+        Produk.tampilkanSemuaProduk();
     }
     
     public void lihatLaporan() {

@@ -26,18 +26,24 @@ public class Pembeli extends Pengguna {
         return null;
     }
 
-    public static Pembeli loginPembeli(Scanner scan) {
+    public static void loginPembeli(Scanner scan) {
         while (true) {
             System.out.println("================================= Login Pembeli ==============================");
+            System.out.println("Ketik 'exit' untuk keluar dari login pembeli.");
             System.out.print("Email: ");
             String email = scan.nextLine();
+            if (email.equalsIgnoreCase("exit")) {
+                System.out.println("Anda keluar dari login penjual.");
+                break; 
+            }
             System.out.print("Password: ");
             String password = scan.nextLine();
 
             Pembeli pembeli = cariPembeli(email, password);
             if (pembeli != null) {
                 System.out.println("Login berhasil. Selamat datang, " + pembeli.getNama() + "!");
-                return pembeli;
+                MenuPembeli menu = new MenuPembeli(pembeli);
+                menu.aksi();
             } else {
                 System.out.println("Login gagal. Email atau password salah. Coba lagi.");
             }

@@ -4,9 +4,7 @@ import pembeli.Pembeli;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import moderator.Moderator;
-import pembeli.MenuPembeli;
 import penjual.Penjual;
-import penjual.Produk;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -30,9 +28,7 @@ public class Main {
 
                 switch (pilihan) {
                     case 1:
-                        Pembeli pembeli = Pembeli.loginPembeli(scanner);
-                        MenuPembeli menuPembeli = new MenuPembeli(pembeli);
-                        menuPembeli.aksi();
+                        Pembeli.loginPembeli(scanner);
                         break;
                     case 2:
                         Penjual.loginPenjual(scanner);

@@ -3,34 +3,41 @@ package pembeli;
 import java.util.ArrayList;
 
 public class Komentar {
-    private String komentarText;
-
-    public static ArrayList<Komentar> daftarKomentar = new ArrayList<>() {{
-        add(new Komentar("Produk sangat sesuai harapan"));
-        add(new Komentar("Cukup memuaskan"));
-        add(new Komentar("Kualitas suara bagus"));
-        add(new Komentar("Nyaman dipakai sepanjang hari"));
-        add(new Komentar("Pengiriman lama, tidak sesuai deskripsi."));
-        add(new Komentar("Sangat mengecewakan, produk cacat."));
-    }};
+    private final String komentarText;
+    private final ArrayList<String> balasan; // Tambahkan daftar balasan
 
     public Komentar(String komentarText) {
         this.komentarText = komentarText;
+        this.balasan = new ArrayList<>();
     }
 
     public String getKomentarText() {
         return komentarText;
     }
 
-    public void setKomentarText(String komentarText) {
-        this.komentarText = komentarText;
+    public void tambahBalasan(String balasan) {
+        this.balasan.add(balasan);
+    }
+
+    public ArrayList<String> getBalasan() {
+        return balasan;
     }
 
     public static ArrayList<Komentar> getDaftarKomentar() {
+        ArrayList<Komentar> daftarKomentar = new ArrayList<>();
+        daftarKomentar.add(new Komentar("Barang sangat bagus, sesuai ekspektasi."));
+        daftarKomentar.add(new Komentar("Packing kurang rapi, tapi barangnya oke."));
+        daftarKomentar.add(new Komentar("Barang tidak sesuai deskripsi."));
+        daftarKomentar.add(new Komentar("Layanan cepat dan memuaskan."));
         return daftarKomentar;
     }
-    
-    public static void hapusKomentar(int urutan) {
-        daftarKomentar.get(urutan).setKomentarText("**Komentar telah dihapus oleh moderator**");
+
+    @Override
+    public String toString() {
+        String result = komentarText + "\n  Balasan:";
+        for (String b : balasan) {
+            result += "\n    - " + b;
+        }
+        return result;
     }
 }

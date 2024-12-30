@@ -22,11 +22,16 @@ public class Moderator extends Pengguna {
         this.jumlahUlasanDihapus = 0;
     }
 
-public static boolean loginModerator(Scanner scan) { 
+public static void loginModerator(Scanner scan) { 
     while (true) { 
         System.out.println("======================= Login Moderator ======================");
+        System.out.println("Ketik 'exit'untuk keluar dari login moderator.");
         System.out.print("Email: ");
         String email = scan.nextLine();
+        if (email.equalsIgnoreCase("exit")) {
+            System.out.println("Anda keluar dari login penjual.");
+            break; 
+        }
         System.out.print("Password: ");
         String password = scan.nextLine();
 
@@ -35,7 +40,6 @@ public static boolean loginModerator(Scanner scan) {
             System.out.println("Login berhasil. Selamat datang, " + moderator.getNama() + "!");
             MenuModerator menu = new MenuModerator(moderator);
             menu.aksi(); 
-            return true; 
         } else {
             System.out.println("Login gagal. Email atau password salah. Coba lagi.");
         }
