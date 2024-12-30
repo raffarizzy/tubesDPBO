@@ -96,7 +96,7 @@ public class Produk {
                         //LaporUlasan.balasUlasan();
                         break;
                     case 2 :
-                        LaporUlasan.pilihDanLaporUlasan(daftarUlasan);
+                        LaporUlasan.pilihDanLaporUlasan();
                         break;
                     case 3:
                         System.out.println("Kembali ke menu sebelumnya...");
@@ -105,6 +105,5 @@ public class Produk {
                         System.out.println("Pilihan tidak valid! Silakan coba lagi.");
                 }
             }
-        
     }  
 }

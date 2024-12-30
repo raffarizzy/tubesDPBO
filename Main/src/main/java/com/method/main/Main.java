@@ -26,7 +26,7 @@ public class Main {
                 System.out.print("Pilih menu: ");
 
                 int pilihan = scanner.nextInt();
-                scanner.nextLine(); // Clear newline after input
+                scanner.nextLine(); 
 
                 switch (pilihan) {
                     case 1:

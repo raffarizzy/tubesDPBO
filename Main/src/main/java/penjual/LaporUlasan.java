@@ -2,46 +2,107 @@ package penjual;
 import java.util.Scanner;
 import java.util.ArrayList;
 import pembeli.Komentar;
+import pembeli.Rating;
 
 public class LaporUlasan {
-    private static ArrayList<Komentar> ulasanDilanggar = new ArrayList<>();
+    private final String namaProduk;
+    private final String namaPengguna;
+    private final String komentar;
 
-    
-    public static void laporUlasan(Komentar ulasan) {
-        ulasanDilanggar.add(ulasan);
-        System.out.println("Ulasan berhasil dilaporkan dan akan ditinjau oleh moderator.");
+    public LaporUlasan(String namaProduk, String namaPengguna, String komentar) {
+        this.namaProduk = namaProduk;
+        this.namaPengguna = namaPengguna;
+        this.komentar = komentar;
     }
 
+    public String getNamaProduk() {
+        return namaProduk;
+    }
+
+    public String getNamaPengguna() {
+        return namaPengguna;
+    }
+
+    public String getKomentar() {
+        return komentar;
+    }
+
+    public static ArrayList<LaporUlasan> getUlasanDilanggar() {
+        return ulasanDilanggar;
+    }
+    
+    private static final ArrayList<LaporUlasan> ulasanDilanggar = new ArrayList<>();
+   
     public static void tampilkanLaporan() {
-        if (ulasanDilanggar.isEmpty()) {
+        if (getUlasanDilanggar().isEmpty()) {
             System.out.println("Tidak ada ulasan yang dilaporkan.");
         } else {
             System.out.println("Daftar Ulasan yang Dilaporkan:");
-            for (Komentar ulasan : ulasanDilanggar) {
-                ulasan.getKomentarText();
+            for (LaporUlasan ulasan : ulasanDilanggar) {
+                System.out.println("- Produk: " + ulasan.getNamaProduk());
+                System.out.println("  Pengguna: " + ulasan.getNamaPengguna());
+                System.out.println("  Ulasan: " + ulasan.getKomentar());
+                System.out.println();
             }
         }
     }
 
-    public static void pilihDanLaporUlasan(ArrayList<Komentar> daftarUlasan) {
+    public static void pilihDanLaporUlasan() {
         Scanner sc = new Scanner(System.in);
-        if (daftarUlasan.isEmpty()) {
-            System.out.println("Tidak ada ulasan untuk dipilih.");
+        
+        System.out.print("Masukkan nama produk yang ulasannya ingin dilaporkan: ");
+        String namaProduk = sc.nextLine();
+        
+        boolean produkDitemukan = false;
+        for (Rating rating : Rating.getDaftarRating()) {
+            if (rating.getNamaProduk().equalsIgnoreCase(namaProduk)) {
+                produkDitemukan = true;
+                break;
+            }
+        }
+
+        if (!produkDitemukan) {
+            System.out.println("Produk dengan nama \"" + namaProduk + "\" tidak ditemukan!");
             return;
         }
-
-        System.out.println("Pilih ulasan yang ingin dilaporkan (masukkan angka index): ");
-        for (int i = 0; i < daftarUlasan.size(); i++) {
-            System.out.println((i+1) + ". " + daftarUlasan.get(i).getKomentarText());
-        }
-
-        System.out.print("Masukkan pilihan Anda: ");
-        int index = sc.nextInt() - 1;
         
-        if (index >= 0 && index < daftarUlasan.size()) {
-            laporUlasan(daftarUlasan.get(index));
-        } else {
-            System.out.println("Index tidak valid.");
+        System.out.print("Masukkan nama pengguna yang ulasannya ingin dilaporkan: ");
+        String namaPengguna = sc.nextLine();
+        
+        ArrayList<Komentar> komentarTerkait = new ArrayList<>();
+        for (Rating rating : Rating.getDaftarRating()) {
+            if (rating.getNamaProduk().equalsIgnoreCase(namaProduk) &&
+                rating.getPengguna().equalsIgnoreCase(namaPengguna)) {
+                komentarTerkait.addAll(rating.getDaftarKomentar());
+            }
         }
+
+        if (komentarTerkait.isEmpty()) {
+            System.out.println("Tidak ada ulasan untuk produk \"" + namaProduk + "\" oleh pengguna \"" + namaPengguna + "\".");
+            return;
+        }
+        
+        // Menampilkan komentar terkait
+        System.out.println("\nDaftar Ulasan Terkait:");
+        for (int i = 0; i < komentarTerkait.size(); i++) {
+            System.out.println((i + 1) + ". " + komentarTerkait.get(i).getKomentarText());
+        }
+
+        // Pilih ulasan untuk dilaporkan
+        System.out.print("\nMasukkan nomor ulasan yang ingin dilaporkan: ");
+        int pilihan = sc.nextInt();
+
+        if (pilihan < 1 || pilihan > komentarTerkait.size()) {
+            System.out.println("Pilihan tidak valid!");
+            return;
+        }
+           
+        // Menambahkan ke daftar laporan
+        Komentar ulasanDipilih = komentarTerkait.get(pilihan - 1);
+        ulasanDilanggar.add(new LaporUlasan(namaProduk, namaPengguna, ulasanDipilih.getKomentarText()));
+        System.out.println("Ulasan \"" + ulasanDipilih.getKomentarText() +
+                       "\" telah dilaporkan untuk produk \"" + namaProduk +
+                       "\" oleh pengguna \"" + namaPengguna + "\".");
+
     }
 }

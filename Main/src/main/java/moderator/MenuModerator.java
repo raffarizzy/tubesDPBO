@@ -6,15 +6,14 @@ import penjual.Produk;
 import java.util.Scanner;
 import pembeli.Rating;
 import pembeli.Komentar;
+import penjual.LaporUlasan;
 
 public class MenuModerator implements Menu {
-    private final Produk produk;
     private Moderator moderator;
     private Scanner scanner;
 
     public MenuModerator(Moderator moderator) {
         this.moderator = moderator;
-        this.produk = new Produk();
         this.scanner = new Scanner(System.in);
     }
 
@@ -162,17 +161,17 @@ public class MenuModerator implements Menu {
             return;  // Keluar dari metode jika pengguna tidak ditemukan
         }
 
-        Komentar.hapusKomentar(selected);
+        //Komentar.hapusKomentar(selected);
         System.out.println("Komentar oleh pengguna " + namaPengguna + " untuk produk " + namaProduk + " telah dihapus.");
     }
 
     private void lihatProduk() {
         System.out.println("=== Daftar Produk ===");
-        produk.tampilkanSemuaProduk();
+        Produk.tampilkanSemuaProduk();
     }
     
     private void lihatLaporan() {
         System.out.println("=== Daftar Laporan ===");
+        LaporUlasan.tampilkanLaporan();
     }
 }
-
