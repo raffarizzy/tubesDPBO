@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Komentar {
     private final String komentarText;
-    private final ArrayList<String> balasan; // Tambahkan daftar balasan
+    private final ArrayList<String> balasan; 
 
     public Komentar(String komentarText) {
         this.komentarText = komentarText;

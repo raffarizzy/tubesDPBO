@@ -1,6 +1,7 @@
 package pembeli;
 
 import com.method.main.Pengguna;
+import penjual.Produk;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,14 +10,24 @@ public class Pembeli extends Pengguna {
         add(new Pembeli("Dhea Sri Noor Septianiz", "dhea@gmail.com", "dhea123", "081234567891"));
     }};
 
-    private final ArrayList<String> produkYangSudahDibeli = new ArrayList<>();
+    private final ArrayList<Produk> produkYangSudahDibeli = new ArrayList<>();
     private final ArrayList<String> produkYangSudahDiberiRating = new ArrayList<>();
 
     public Pembeli(String nama, String email, String password, String nomorTelepon) {
-        super(nama, email, password, nomorTelepon);
-        produkYangSudahDibeli.add("Laptop ABC");
-    }
+    super(nama, email, password, nomorTelepon);
     
+    Produk.initializeDaftarProduk(); 
+    ArrayList<Produk> produkRahmah = Produk.getDaftarProduk().get("Rahmah");
+        if (produkRahmah != null) {
+            for (Produk produk : produkRahmah) {
+                if (produk.getNama().equals("Laptop ABC")) {
+                    produkYangSudahDibeli.add(produk);
+                    break;
+                }
+            }
+        }
+    }
+
     public static Pembeli cariPembeli(String email, String password) {
         for (Pembeli pembeli : daftarPembeli) {
             if (pembeli.getEmail().equals(email) && pembeli.getPassword().equals(password)) {
@@ -55,8 +66,8 @@ public class Pembeli extends Pengguna {
             System.out.println("Anda belum membeli produk apapun.");
         } else {
             System.out.println("Produk yang sudah dibeli:");
-            for (String namaProduk : produkYangSudahDibeli) {
-                System.out.println("- " + namaProduk);
+            for (Produk produk : produkYangSudahDibeli) {
+                produk.tampilkanInfo();
             }
         }
     }
@@ -66,7 +77,15 @@ public class Pembeli extends Pengguna {
         System.out.print("Masukkan nama produk yang ingin diberi rating: ");
         String namaProduk = scanner.nextLine();
 
-        if (produkYangSudahDibeli.contains(namaProduk)) {
+        Produk produkDitemukan = null;
+        for (Produk produk : produkYangSudahDibeli) {
+            if (produk.getNama().equalsIgnoreCase(namaProduk)) {
+                produkDitemukan = produk;
+                break;
+            }
+        }
+
+        if (produkDitemukan != null) {
             System.out.print("Berikan rating (1-5): ");
             int ratingBintang = scanner.nextInt();
             scanner.nextLine();
@@ -76,12 +95,12 @@ public class Pembeli extends Pengguna {
                 String komentarText = scanner.nextLine();
 
                 Komentar komentar = new Komentar(komentarText);
-                Rating rating = new Rating(namaProduk, this.getNama(), "2024-30-12", ratingBintang);
+                Rating rating = new Rating(produkDitemukan.getNama(), this.getNama(), "2025-01-01", ratingBintang);
                 rating.tambahKomentar(komentar);
                 Rating.getDaftarRating().add(rating);
 
-                produkYangSudahDiberiRating.add(namaProduk);
-                System.out.println("Rating berhasil diberikan untuk " + namaProduk);
+                produkYangSudahDiberiRating.add(produkDitemukan.getNama());
+                System.out.println("Rating berhasil diberikan untuk " + produkDitemukan.getNama());
             } else {
                 System.out.println("Rating harus antara 1 sampai 5.");
             }
@@ -89,6 +108,7 @@ public class Pembeli extends Pengguna {
             System.out.println("Produk " + namaProduk + " tidak ditemukan dalam daftar produk yang sudah dibeli.");
         }
     }
+
 
     public void tampilkanProdukDiberiRating() {
         if (produkYangSudahDiberiRating.isEmpty()) {

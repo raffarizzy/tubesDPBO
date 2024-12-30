@@ -12,7 +12,7 @@ public class RiwayatModerasi {
     }
     
     public static void tampilkanRiwayat() {
-        System.out.println("== Riwayat Moderasi ==");
+        System.out.println("============================== Riwayat Moderasi ==============================");
         if (riwayat.isEmpty()) {
             System.out.println("Tidak ada riwayat moderasi");
         } else {

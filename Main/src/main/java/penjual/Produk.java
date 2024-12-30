@@ -26,6 +26,9 @@ public class Produk {
         this.menuPenjual = new MenuPenjual();
     }
     
+    /**
+     *
+     */
     public static void initializeDaftarProduk(){
         ArrayList<Produk> produkRahmah = new ArrayList<>();
         produkRahmah.add(new Produk("Laptop ABC", 5000000, "Laptop dengan spesifikasi tinggi dan desain elegan."));
@@ -81,7 +84,7 @@ public class Produk {
         Scanner sc = new Scanner(System.in);
             while(true) {
                 tampilkanSemuaProduk();
-                System.out.println("============================== Tinjau Produk =================================");
+                System.out.println("================================ Tinjau Produk ===============================");
                 System.out.println("1. Balas Ulasan");
                 System.out.println("2. Lapor Ulasan");
                 System.out.println("3. Keluar");
