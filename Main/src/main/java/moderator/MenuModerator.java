@@ -113,58 +113,6 @@ public class MenuModerator implements Menu {
         System.out.println("Ulasan oleh pengguna " + namaPengguna + " untuk produk " + namaProduk + " telah dihapus.");
     }
 
-    private void hapusKomentar() {
-        System.out.print("Masukan nama produk: ");
-        String namaProduk = scanner.nextLine();
-        boolean produkDitemukan = false;
-
-        for (Map.Entry<String, ArrayList<Produk>> entry : Produk.getDaftarProduk().entrySet()) {
-            ArrayList<Produk> produkList = entry.getValue();
-            
-            for (Produk p : produkList) {
-                if (namaProduk.equalsIgnoreCase(p.getNama())) {
-                    produkDitemukan = true;
-                    System.out.println("Produk dengan nama \"" + namaProduk + "\" ditemukan.");
-                    // Implementasi logika penghapusan ulasan di sini
-                    System.out.println("Ulasan untuk produk ini telah dihapus.");
-                    break;
-                }
-            }
-            if(produkDitemukan){
-                break;
-            }
-        }
-
-        if (!produkDitemukan) {
-            System.out.println("Nama produk tidak ditemukan!");
-            return;  // Keluar dari metode jika produk tidak ditemukan
-        }
-
-        System.out.print("Masukkan nama pengguna yang berkomentar: ");
-        String namaPengguna = scanner.nextLine();
-        boolean penggunaDitemukan = false;
-
-        // Pengecekan apakah pengguna ada dalam daftar rating
-        int counter = 0;
-        int selected = 0;
-        for (Rating r : Rating.getDaftarRating()) {
-            if (namaPengguna.equals(r.getPengguna())) {
-                selected = counter;
-                penggunaDitemukan = true;
-                break;
-            }
-           counter = counter + 1;
-        }
-
-        if (!penggunaDitemukan) {
-            System.out.println("Nama pengguna tidak ditemukan!");
-            return;  // Keluar dari metode jika pengguna tidak ditemukan
-        }
-
-        //Komentar.hapusKomentar(selected);
-        System.out.println("Komentar oleh pengguna " + namaPengguna + " untuk produk " + namaProduk + " telah dihapus.");
-    }
-
     private void lihatProduk() {
         System.out.println("=== Daftar Produk ===");
         Produk.tampilkanSemuaProduk();
