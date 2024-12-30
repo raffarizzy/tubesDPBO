@@ -18,9 +18,9 @@ public class MenuPenjual implements Menu {
     
     @Override
     public void tampilkanMenu() {
-        System.out.println("=== Menu Penjual ===");
+        System.out.println("============================== Menu Penjual ==================================");
         System.out.println("1. Daftar Produk");
-        System.out.println("2. Tampilkan Profile");
+        System.out.println("2. Profil");
         System.out.println("3. Keluar");
     }
 

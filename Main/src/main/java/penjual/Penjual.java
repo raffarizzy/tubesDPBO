@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Penjual extends Pengguna{
     private static final ArrayList<Penjual> daftarPenjual = new ArrayList<>() {{
-        add(new Penjual("rahmah", "rahmah@gmail", "123", "0853"));
+        add(new Penjual("Rahmah Aisyah", "rahmah@gmail.com", "rahmah123", "085312436789"));
     }};
 
 
@@ -17,7 +17,7 @@ public class Penjual extends Pengguna{
     
     public static void loginPenjual(Scanner scan) {
         while (true) { 
-            System.out.println("================================ Login Penjual ==============================");
+            System.out.println("================================ Login Penjual ===============================");
             System.out.println("Ketik 'exit'untuk keluar dari login penjual.");
             System.out.print("Email: ");
             String email = scan.nextLine();
@@ -51,9 +51,7 @@ public class Penjual extends Pengguna{
     
     @Override
     public void jenisPengguna(){
-        System.out.println("\n[=== PROFILE PENJUAL ===]");
+        System.out.println("=================================== Penjual ==================================");
         super.tampilkanProfil();
     }
-
-
 }

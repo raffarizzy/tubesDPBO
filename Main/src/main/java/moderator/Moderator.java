@@ -7,10 +7,9 @@ import java.util.Scanner;
 public class Moderator extends Pengguna {
     private int jumlahUlasanDihapus;
     private Scanner scanner;
-    
-    
+        
     private static final ArrayList<Moderator> daftarModerator = new ArrayList<>() {{
-        add(new Moderator("Raffa", "raffa@gmail.com", "raffa123", "085138229382"));
+        add(new Moderator("Raffa Rizky Febryan ", "raffa@gmail.com", "raffa123", "085138229382"));
     }};
 
     public Moderator(String nama, String email, String password, String nomorTelepon) {
@@ -20,7 +19,7 @@ public class Moderator extends Pengguna {
 
 public static void loginModerator(Scanner scan) { 
     while (true) { 
-        System.out.println("======================= Login Moderator ======================");
+        System.out.println("================================ Login Moderator =============================");
         System.out.println("Ketik 'exit'untuk keluar dari login moderator.");
         System.out.print("Email: ");
         String email = scan.nextLine();
@@ -44,11 +43,11 @@ public static void loginModerator(Scanner scan) {
      
     @Override
     public void jenisPengguna(){
-        System.out.println("[=== MODERATOR ===]");
+        System.out.println("================================== Moderator =================================");
         super.tampilkanProfil();
+        System.out.println("Jumlah Ulasan Dihapus : " + jumlahUlasanDihapus);
     }
 
-    // Method untuk mencari moderator berdasarkan email
     public static Moderator cariModerator(String email, String password) {
         for (Moderator moderator : daftarModerator) {
             if (moderator.getEmail().equals(email) && moderator.getPassword().equals(password)) {
@@ -60,13 +59,6 @@ public static void loginModerator(Scanner scan) {
 
     public int getJumlahUlasanDihapus() {
         return jumlahUlasanDihapus;
-    }
-
-    // Overriding method tampilkanProfil
-    @Override
-    public void tampilkanProfil() {
-        super.tampilkanProfil();
-        System.out.println("Jumlah Ulasan Dihapus : " + jumlahUlasanDihapus);
     }
     
     public void setJumlahUlasanDihapus(int jumlahUlasanDihapus) {

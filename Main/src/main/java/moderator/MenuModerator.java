@@ -1,4 +1,5 @@
 package moderator;
+
 import com.method.main.Menu;
 import penjual.Produk;
 import java.util.Scanner;
@@ -15,13 +16,13 @@ public class MenuModerator implements Menu {
 
     @Override
     public void tampilkanMenu() {
-        System.out.println("=== Menu Moderator ===");
+        System.out.println("============================= Menu Moderator =================================");
         System.out.println("1. Lihat laporan");
         System.out.println("2. Hapus Ulasan");
         System.out.println("3. Lihat Riwayat Moderasi");
         System.out.println("4. Lihat Daftar Produk");
-        System.out.println("5. Tampilkan Profil");
-        System.out.println("6. Logout");
+        System.out.println("5. Profil");
+        System.out.println("6. Keluar");
     }
 
     @Override
@@ -32,7 +33,7 @@ public class MenuModerator implements Menu {
             tampilkanMenu();
             System.out.print("Pilih aksi: ");
             pilihan = scanner.nextInt();
-            scanner.nextLine(); // Clear buffer
+            scanner.nextLine(); 
 
             switch (pilihan) {
                 case 1:
@@ -48,7 +49,7 @@ public class MenuModerator implements Menu {
                     Produk.tampilkanSemuaProduk();
                     break;
                 case 5:
-                    moderator.tampilkanProfil();
+                    moderator.jenisPengguna();
                     break;
                 case 6:
                     System.out.println("Keluar dari menu moderator.");
@@ -60,12 +61,12 @@ public class MenuModerator implements Menu {
     }
 
     public void lihatProduk() {
-        System.out.println("=== Daftar Produk ===");
+        System.out.println("============================= Daftar Produk =================================");
         Produk.tampilkanSemuaProduk();
     }
     
     public void lihatLaporan() {
-        System.out.println("=== Daftar Laporan ===");
+        System.out.println("============================= Daftar Laporan =================================");
         LaporUlasan.tampilkanLaporan();
     }
 }

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Pembeli extends Pengguna {
     private static ArrayList<Pembeli> daftarPembeli = new ArrayList<>() {{
-        add(new Pembeli("Dhea Sri Noor Septianiz", "dhea@gmail", "321", "081234567891"));
+        add(new Pembeli("Dhea Sri Noor Septianiz", "dhea@gmail.com", "dhea123", "081234567891"));
     }};
 
     private final ArrayList<String> produkYangSudahDibeli = new ArrayList<>();
@@ -76,7 +76,7 @@ public class Pembeli extends Pengguna {
                 String komentarText = scanner.nextLine();
 
                 Komentar komentar = new Komentar(komentarText);
-                Rating rating = new Rating(namaProduk, this.getNama(), "2025-01-01", ratingBintang);
+                Rating rating = new Rating(namaProduk, this.getNama(), "2024-30-12", ratingBintang);
                 rating.tambahKomentar(komentar);
                 Rating.getDaftarRating().add(rating);
 

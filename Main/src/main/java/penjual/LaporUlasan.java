@@ -49,19 +49,15 @@ public class LaporUlasan {
 
     public static void pilihDanLaporUlasan() {
         Scanner sc = new Scanner(System.in);
-
-        // Masukkan nama produk
         System.out.print("Masukkan nama produk yang ulasannya ingin dilaporkan: ");
         String namaProduk = sc.nextLine();
 
-        // Masukkan nama pengguna
         System.out.print("Masukkan nama pengguna yang ulasannya ingin dilaporkan: ");
         String namaPengguna = sc.nextLine();
 
         boolean ulasanDitemukan = false;
         Rating ratingDipilih = null;
 
-        // Cari ulasan berdasarkan nama produk dan nama pengguna
         for (Rating rating : Rating.getDaftarRating()) {
             if (rating.getNamaProduk().equalsIgnoreCase(namaProduk) &&
                 rating.getPengguna().equalsIgnoreCase(namaPengguna)) {
@@ -76,7 +72,6 @@ public class LaporUlasan {
             return;
         }
 
-        // Tampilkan detail ulasan lengkap
         System.out.println("\nUlasan dan Rating");
         System.out.println("Pengguna       : " + ratingDipilih.getPengguna());
         System.out.println("Tanggal Ulasan : " + ratingDipilih.getTanggalUlasan());
@@ -86,7 +81,6 @@ public class LaporUlasan {
             System.out.println("  - " + komentar.getKomentarText());
         }
 
-        // Konfirmasi laporan ulasan
         System.out.print("\nApakah Anda ingin melaporkan ulasan ini? (ya/tidak): ");
         String konfirmasi = sc.nextLine();
 
