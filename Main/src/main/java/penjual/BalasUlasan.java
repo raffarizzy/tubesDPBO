@@ -9,64 +9,58 @@ import java.util.Scanner;
 public class BalasUlasan {
     public static void balasUlasan() {
         Scanner sc = new Scanner(System.in);
-        
+
         // Tampilkan semua produk
         Produk.tampilkanSemuaProduk();
-        
+
         // Input nama produk
         System.out.print("Masukkan nama produk yang ulasannya ingin dibalas: ");
         String namaProduk = sc.nextLine();
-        
-        boolean produkDitemukan = false;
-        ArrayList<Rating> ratingTerkait = new ArrayList<>();
+
+        // Input nama pengguna
+        System.out.print("Masukkan nama pengguna yang ulasannya ingin dibalas: ");
+        String namaPengguna = sc.nextLine();
+
+        boolean ulasanDitemukan = false;
+        Rating ratingDipilih = null;
+
+        // Cari ulasan yang sesuai dengan nama produk dan nama pengguna
         for (Rating rating : Rating.getDaftarRating()) {
-            if (rating.getNamaProduk().equalsIgnoreCase(namaProduk)) {
-                produkDitemukan = true;
-                ratingTerkait.add(rating);
+            if (rating.getNamaProduk().equalsIgnoreCase(namaProduk) &&
+                rating.getPengguna().equalsIgnoreCase(namaPengguna)) {
+                ulasanDitemukan = true;
+                ratingDipilih = rating;
+                break;
             }
         }
-        
-        if (!produkDitemukan) {
-            System.out.println("Produk dengan nama \"" + namaProduk + "\" tidak ditemukan!");
+
+        if (!ulasanDitemukan) {
+            System.out.println("Ulasan untuk produk \"" + namaProduk + "\" dari pengguna \"" + namaPengguna + "\" tidak ditemukan!");
             return;
         }
-        
-        // Tampilkan daftar ulasan terkait produk tersebut
-        System.out.println("\nDaftar Ulasan untuk Produk \"" + namaProduk + "\":");
-        ArrayList<Komentar> semuaKomentar = new ArrayList<>();
-        for (Rating rating : ratingTerkait) {
-            System.out.println("- Pengguna: " + rating.getPengguna());
-            System.out.println("  Rating: " + rating.getRatingBintang() + " bintang");
-            System.out.println("  Ulasan: ");
-            int index = 1;
-            for (Komentar komentar : rating.getDaftarKomentar()) {
-                System.out.println("    " + index + ". " + komentar.getKomentarText());
-                semuaKomentar.add(komentar); // Tambahkan ke daftar semua komentar
-                index++;
-            }
-            System.out.println();
+
+        // Tampilkan detail ulasan lengkap dari pengguna
+        System.out.println("\nUlasan dan Rating");
+        System.out.println("Pengguna       : " + ratingDipilih.getPengguna());
+        System.out.println("Tanggal Ulasan : " + ratingDipilih.getTanggalUlasan());
+        System.out.println("Rating         : " + ratingDipilih.getRatingBintang() + " bintang");
+        System.out.println("Komentar       :");
+        for (Komentar komentar : ratingDipilih.getDaftarKomentar()) {
+            System.out.println("  - " + komentar.getKomentarText());
         }
-        
-        // Pilih ulasan untuk dibalas
-        System.out.print("Masukkan nomor ulasan yang ingin dibalas: ");
-        int pilihan = sc.nextInt();
-        sc.nextLine(); // Buang newline setelah input angka
-        
-        if (pilihan < 1 || pilihan > semuaKomentar.size()) {
-            System.out.println("Pilihan tidak valid!");
-            return;
-        }
-        
-        // Ambil ulasan yang dipilih
-        Komentar ulasanDipilih = semuaKomentar.get(pilihan - 1);
-        
+
         // Input balasan dari penjual
-        System.out.print("Masukkan balasan Anda untuk ulasan ini: ");
+        System.out.print("\nMasukkan balasan Anda untuk ulasan ini: ");
         String balasan = sc.nextLine();
-        
-        // Tambahkan balasan ke ulasan
-        ulasanDipilih.tambahBalasan(balasan);
-        System.out.println("Balasan Anda telah ditambahkan:");
-        System.out.println("  \"" + ulasanDipilih.getKomentarText() + "\" -> \"" + balasan + "\"");
+
+        // Tambahkan balasan ke semua komentar dalam ulasan
+        for (Komentar komentar : ratingDipilih.getDaftarKomentar()) {
+            komentar.tambahBalasan(balasan);
+        }
+
+        System.out.println("\nBalasan Anda telah ditambahkan untuk ulasan pengguna \"" + namaPengguna + "\":");
+        for (Komentar komentar : ratingDipilih.getDaftarKomentar()) {
+            System.out.println("  \"" + komentar.getKomentarText() + "\" -> \"" + balasan + "\"");
+        }
     }
 }

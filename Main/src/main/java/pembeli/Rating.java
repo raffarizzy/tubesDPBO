@@ -65,29 +65,38 @@ public class Rating {
     }
 
     public static void tampilkanRating(String namaProduk) {
-        ArrayList<Rating> daftarRating = Rating.getDaftarRating();
+    ArrayList<Rating> daftarRating = Rating.getDaftarRating();
 
-        boolean ditemukan = false;
-        for (Rating rating : daftarRating) {
-            if (rating.getNamaProduk().equals(namaProduk)) {
-                ditemukan = true;
-                System.out.println("Pengguna       : " + rating.getPengguna());
-                System.out.println("Tanggal Ulasan : " + rating.getTanggalUlasan());
-                System.out.println("Rating         : " + rating.getRatingBintang() + " bintang");
-                System.out.print("Komentar       : ");
+    boolean ditemukan = false;
+    for (Rating rating : daftarRating) {
+        if (rating.getNamaProduk().equals(namaProduk)) {
+            ditemukan = true;
+            System.out.println("Pengguna       : " + rating.getPengguna());
+            System.out.println("Tanggal Ulasan : " + rating.getTanggalUlasan());
+            System.out.println("Rating         : " + rating.getRatingBintang() + " bintang");
+            System.out.println("Komentar       :");
 
-                for (Komentar komentar : rating.getDaftarKomentar()) {
-                    System.out.println(komentar.getKomentarText());
+            for (Komentar komentar : rating.getDaftarKomentar()) {
+                System.out.println("  - " + komentar.getKomentarText());
+
+                // Menampilkan balasan jika ada
+                ArrayList<String> balasanList = komentar.getBalasan();
+                if (!balasanList.isEmpty()) {
+                    System.out.println("    Balasan dari penjual:");
+                    for (String balasan : balasanList) {
+                        System.out.println("      -> " + balasan);
+                    }
                 }
-
-                System.out.println();
             }
-        }
-
-        if (!ditemukan) {
-            System.out.println("Belum ada ulasan untuk produk ini.");
+            System.out.println();
         }
     }
+
+    if (!ditemukan) {
+        System.out.println("Belum ada ulasan untuk produk ini.");
+    }
+}
+
 
     @Override
     public String toString() {

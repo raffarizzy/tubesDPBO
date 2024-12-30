@@ -1,12 +1,8 @@
 package moderator;
 
-import moderator.MenuModerator;
-import com.method.main.Menu;
 import com.method.main.Pengguna;
 import java.util.ArrayList;
 import java.util.Scanner;
-import pembeli.Rating;
-import penjual.Produk;
 
 public class Moderator extends Pengguna {
     private int jumlahUlasanDihapus;

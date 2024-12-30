@@ -1,4 +1,5 @@
 package penjual;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import pembeli.Komentar;
@@ -30,9 +31,9 @@ public class LaporUlasan {
     public static ArrayList<LaporUlasan> getUlasanDilanggar() {
         return ulasanDilanggar;
     }
-    
+
     private static final ArrayList<LaporUlasan> ulasanDilanggar = new ArrayList<>();
-   
+
     public static void tampilkanLaporan() {
         if (getUlasanDilanggar().isEmpty()) {
             System.out.println("Tidak ada ulasan yang dilaporkan.");
@@ -49,60 +50,54 @@ public class LaporUlasan {
 
     public static void pilihDanLaporUlasan() {
         Scanner sc = new Scanner(System.in);
-        
+
+        // Masukkan nama produk
         System.out.print("Masukkan nama produk yang ulasannya ingin dilaporkan: ");
         String namaProduk = sc.nextLine();
-        
-        boolean produkDitemukan = false;
+
+        // Masukkan nama pengguna
+        System.out.print("Masukkan nama pengguna yang ulasannya ingin dilaporkan: ");
+        String namaPengguna = sc.nextLine();
+
+        boolean ulasanDitemukan = false;
+        Rating ratingDipilih = null;
+
+        // Cari ulasan berdasarkan nama produk dan nama pengguna
         for (Rating rating : Rating.getDaftarRating()) {
-            if (rating.getNamaProduk().equalsIgnoreCase(namaProduk)) {
-                produkDitemukan = true;
+            if (rating.getNamaProduk().equalsIgnoreCase(namaProduk) &&
+                rating.getPengguna().equalsIgnoreCase(namaPengguna)) {
+                ulasanDitemukan = true;
+                ratingDipilih = rating;
                 break;
             }
         }
 
-        if (!produkDitemukan) {
-            System.out.println("Produk dengan nama \"" + namaProduk + "\" tidak ditemukan!");
+        if (!ulasanDitemukan) {
+            System.out.println("Ulasan untuk produk \"" + namaProduk + "\" dari pengguna \"" + namaPengguna + "\" tidak ditemukan!");
             return;
         }
-        
-        System.out.print("Masukkan nama pengguna yang ulasannya ingin dilaporkan: ");
-        String namaPengguna = sc.nextLine();
-        
-        ArrayList<Komentar> komentarTerkait = new ArrayList<>();
-        for (Rating rating : Rating.getDaftarRating()) {
-            if (rating.getNamaProduk().equalsIgnoreCase(namaProduk) &&
-                rating.getPengguna().equalsIgnoreCase(namaPengguna)) {
-                komentarTerkait.addAll(rating.getDaftarKomentar());
+
+        // Tampilkan detail ulasan lengkap
+        System.out.println("\nUlasan dan Rating");
+        System.out.println("Pengguna       : " + ratingDipilih.getPengguna());
+        System.out.println("Tanggal Ulasan : " + ratingDipilih.getTanggalUlasan());
+        System.out.println("Rating         : " + ratingDipilih.getRatingBintang() + " bintang");
+        System.out.println("Komentar       :");
+        for (Komentar komentar : ratingDipilih.getDaftarKomentar()) {
+            System.out.println("  - " + komentar.getKomentarText());
+        }
+
+        // Konfirmasi laporan ulasan
+        System.out.print("\nApakah Anda ingin melaporkan ulasan ini? (ya/tidak): ");
+        String konfirmasi = sc.nextLine();
+
+        if (konfirmasi.equalsIgnoreCase("ya")) {
+            for (Komentar komentar : ratingDipilih.getDaftarKomentar()) {
+                ulasanDilanggar.add(new LaporUlasan(namaProduk, namaPengguna, komentar.getKomentarText()));
             }
+            System.out.println("Ulasan untuk produk \"" + namaProduk + "\" oleh pengguna \"" + namaPengguna + "\" telah dilaporkan.");
+        } else {
+            System.out.println("Ulasan tidak dilaporkan.");
         }
-
-        if (komentarTerkait.isEmpty()) {
-            System.out.println("Tidak ada ulasan untuk produk \"" + namaProduk + "\" oleh pengguna \"" + namaPengguna + "\".");
-            return;
-        }
-        
-        // Menampilkan komentar terkait
-        System.out.println("\nDaftar Ulasan Terkait:");
-        for (int i = 0; i < komentarTerkait.size(); i++) {
-            System.out.println((i + 1) + ". " + komentarTerkait.get(i).getKomentarText());
-        }
-
-        // Pilih ulasan untuk dilaporkan
-        System.out.print("\nMasukkan nomor ulasan yang ingin dilaporkan: ");
-        int pilihan = sc.nextInt();
-
-        if (pilihan < 1 || pilihan > komentarTerkait.size()) {
-            System.out.println("Pilihan tidak valid!");
-            return;
-        }
-           
-        // Menambahkan ke daftar laporan
-        Komentar ulasanDipilih = komentarTerkait.get(pilihan - 1);
-        ulasanDilanggar.add(new LaporUlasan(namaProduk, namaPengguna, ulasanDipilih.getKomentarText()));
-        System.out.println("Ulasan \"" + ulasanDipilih.getKomentarText() +
-                       "\" telah dilaporkan untuk produk \"" + namaProduk +
-                       "\" oleh pengguna \"" + namaPengguna + "\".");
-
     }
 }
